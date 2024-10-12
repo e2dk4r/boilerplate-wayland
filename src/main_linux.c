@@ -9,32 +9,17 @@
 #include <xkbcommon/xkbcommon.h>
 
 #include "content-type-v1-client-protocol.h"
-#include "presentation-time-client-protocol.h"
 #include "xdg-shell-client-protocol.h"
 
 #define ARRAY_SIZE(x) (sizeof(x) / sizeof(*(x)))
 #define internal static
 #define comptime static const
 #define globalvar static
-#define assert(x)                                                              \
-  if (!(x)) {                                                                  \
-    __builtin_debugtrap();                                                     \
-  }
 
-typedef __INT8_TYPE__ s8;
-typedef __INT16_TYPE__ s16;
-typedef __INT32_TYPE__ s32;
-typedef __INT64_TYPE__ s64;
-
-typedef __UINT8_TYPE__ u8;
-typedef __UINT16_TYPE__ u16;
-typedef __UINT32_TYPE__ u32;
-typedef __UINT64_TYPE__ u64;
-
-typedef u8 b8;
-
-typedef float f32;
-typedef double f64;
+#include "StringBuilder.h"
+#include "assert.h"
+#include "memory.h"
+#include "type.h"
 
 enum error_tag {
   ERROR_NONE,
@@ -54,76 +39,6 @@ enum error_tag {
   ERROR_IO_URING_WAIT_CQE,
   ERROR_XKB_CONTEXT_NEW,
 };
-
-struct memory_arena {
-  u64 size;
-  u64 used;
-  u8 *data;
-};
-
-internal b8 IsPowerOfTwo(u64 value) {
-  return value != 0 && (value & (value - 1)) == 0;
-}
-
-internal u8 *MemoryArenaPush(struct memory_arena *arena, u64 size,
-                             u64 alignment) {
-  assert(IsPowerOfTwo(alignment));
-  u64 alignOffset = 0;
-  {
-    u64 alignMask = alignment - 1;
-    u64 alignResult = (u64)(arena->data + arena->used) & alignMask;
-    b8 isDataNotAligned = alignResult != 0;
-    if (isDataNotAligned) {
-      alignOffset = alignment - alignResult;
-    }
-  }
-  size += alignOffset;
-
-  assert(arena->used + size <= arena->size);
-  u8 *block = arena->data + arena->used + alignOffset;
-  arena->used += size;
-
-  return block;
-}
-
-internal struct memory_arena MemoryArenaSub(struct memory_arena *master,
-                                            u64 size) {
-  assert(master->used + size <= master->size);
-
-  struct memory_arena sub = {
-      .size = size,
-      .data = master->data + master->used,
-  };
-
-  master->used += size;
-  return sub;
-}
-
-/*
- * Example usage
- *
- * struct memory_arena *arena = ...;
- * struct memory_temp tempTextMemory = MemoryTempBegin(arena);
- * ...
- * MemoryTempEnd(&tempTextMemory);
- *
- * */
-struct memory_temp {
-  struct memory_arena *arena;
-  u64 usedInTheBeginning;
-};
-
-internal struct memory_temp MemoryTempBegin(struct memory_arena *arena) {
-  return (struct memory_temp){
-      .arena = arena,
-      .usedInTheBeginning = arena->used,
-  };
-}
-
-internal void MemoryTempEnd(struct memory_temp *temp) {
-  struct memory_arena *arena = temp->arena;
-  arena->used = temp->usedInTheBeginning;
-}
 
 struct framebuffer {
   u16 width;
@@ -182,17 +97,19 @@ struct input {
   struct button right;
 };
 
-struct input *InputGetKeyboardAndMouse(struct input *inputs, u32 inputCount) {
-  assert(inputCount != 0);
+internal struct input *InputGetKeyboardAndMouse(struct input *inputs,
+                                                u32 inputCount) {
+  debug_assert(inputCount != 0);
   struct input *keyboardAndMouseInput = inputs + 0;
   return keyboardAndMouseInput;
 }
 
-struct wayland_present {
-  b8 isSynced : 1;
-  u64 ust;
-  u64 refresh;
-};
+// TIME
+internal u64 Now(void) {
+  struct timespec ts;
+  debug_assert(clock_gettime(CLOCK_MONOTONIC, &ts) != -1);
+  return ((u64)ts.tv_sec * 1000000000 /* 1e9 */) + (u64)ts.tv_nsec;
+}
 
 struct linux_context {
   // memory
@@ -203,6 +120,9 @@ struct linux_context {
   // image
   struct framebuffer framebuffer;
 
+  // string
+  struct string_builder stringBuilder;
+
   // wayland globals
   struct wl_display *wl_display;
   struct wl_registry *wl_registry;
@@ -210,7 +130,6 @@ struct linux_context {
   struct wl_shm *wl_shm;
   struct xdg_wm_base *xdg_wm_base;
   struct wl_seat *wl_seat;
-  struct wp_presentation *wp_presentation;
   struct wp_content_type_manager_v1 *wp_content_type_manager_v1;
 
   // wayland objects
@@ -226,7 +145,11 @@ struct linux_context {
   struct xkb_keymap *xkb_keymap;
   struct xkb_state *xkb_state;
 
-  struct wayland_present present;
+  struct io_uring *ring;
+  void *gameLoopOp;
+
+  b8 isXDGSurfaceConfigured : 1;
+  b8 isWindowClosed : 1;
 
   struct input inputs[2];
 
@@ -264,7 +187,7 @@ comptime struct wl_pointer_listener wl_pointer_listener = {
 
 internal void wl_keyboard_keymap(void *data, struct wl_keyboard *wl_keyboard,
                                  uint32_t format, int32_t fd, uint32_t size) {
-  assert(format == WL_KEYBOARD_KEYMAP_FORMAT_XKB_V1);
+  debug_assert(format == WL_KEYBOARD_KEYMAP_FORMAT_XKB_V1);
 
   struct linux_context *context = data;
 
@@ -275,7 +198,7 @@ internal void wl_keyboard_keymap(void *data, struct wl_keyboard *wl_keyboard,
     void *mmapResult =
         mmap(keymapString, size, PROT_READ, MAP_PRIVATE | MAP_FIXED, fd, 0);
     b8 isKeymapReadFromFile = mmapResult != MAP_FAILED;
-    assert(isKeymapReadFromFile);
+    runtime_assert(isKeymapReadFromFile);
 
     close(fd);
   }
@@ -318,8 +241,6 @@ internal void wl_keyboard_key(void *data, struct wl_keyboard *wl_keyboard,
   struct input *keyboardAndMouseInput =
       InputGetKeyboardAndMouse(context->inputs, ARRAY_SIZE(context->inputs));
 
-  assert(context->xkb_state);
-
   // see: WL_KEYBOARD_KEYMAP_FORMAT_XKB_V1
   key += 8;
 
@@ -349,11 +270,25 @@ internal void wl_keyboard_key(void *data, struct wl_keyboard *wl_keyboard,
   } break;
   }
 
-  // printf("state %d up: %d down: %d left: %d right: %d\n", isPressed,
-  //        keyboardAndMouseInput->up.isPressed,
-  //        keyboardAndMouseInput->down.isPressed,
-  //        keyboardAndMouseInput->left.isPressed,
-  //        keyboardAndMouseInput->right.isPressed);
+  struct string_builder *stringBuilder = &context->stringBuilder;
+  StringBuilderAppendString(stringBuilder,
+                            &STRING_FROM_ZERO_TERMINATED("state "));
+  StringBuilderAppendU64(stringBuilder, isPressed);
+  StringBuilderAppendString(stringBuilder,
+                            &STRING_FROM_ZERO_TERMINATED(" up: "));
+  StringBuilderAppendU64(stringBuilder, keyboardAndMouseInput->up.isPressed);
+  StringBuilderAppendString(stringBuilder,
+                            &STRING_FROM_ZERO_TERMINATED(" down: "));
+  StringBuilderAppendU64(stringBuilder, keyboardAndMouseInput->down.isPressed);
+  StringBuilderAppendString(stringBuilder,
+                            &STRING_FROM_ZERO_TERMINATED(" left: "));
+  StringBuilderAppendU64(stringBuilder, keyboardAndMouseInput->left.isPressed);
+  StringBuilderAppendString(stringBuilder,
+                            &STRING_FROM_ZERO_TERMINATED(" right: "));
+  StringBuilderAppendU64(stringBuilder, keyboardAndMouseInput->right.isPressed);
+  StringBuilderAppendString(stringBuilder, &STRING_FROM_ZERO_TERMINATED("\n"));
+  struct string string = StringBuilderFlush(stringBuilder);
+  write(STDOUT_FILENO, string.value, string.length);
 }
 
 internal void wl_keyboard_modifiers(void *data, struct wl_keyboard *wl_keyboard,
@@ -412,31 +347,6 @@ comptime struct wl_seat_listener wl_seat_listener = {
     .name = wl_seat_name,
 };
 
-internal void wp_presentation_feedback_presented(
-    void *data, struct wp_presentation_feedback *wp_presentation_feedback,
-    uint32_t tv_sec_hi, uint32_t tv_sec_lo, uint32_t tv_nsec, uint32_t refresh,
-    uint32_t seq_hi, uint32_t seq_lo, uint32_t flags) {
-  struct linux_context *context = data;
-
-  // - destroy this callback
-  wp_presentation_feedback_destroy(wp_presentation_feedback);
-
-  struct wayland_present *present = &context->present;
-  u64 nanosecondsPerSecond = 1000000000 /* 1e9 */;
-  present->ust =
-      ((u64)tv_sec_hi << 32 | tv_sec_lo) * nanosecondsPerSecond + tv_nsec;
-  present->refresh = refresh;
-}
-
-internal void wp_presentation_feedback_discarded(
-    void *data, struct wp_presentation_feedback *wp_presentation_feedback) {}
-
-comptime struct wp_presentation_feedback_listener
-    wp_presentation_feedback_listener = {
-        .presented = wp_presentation_feedback_presented,
-        .discarded = wp_presentation_feedback_discarded,
-};
-
 comptime struct wl_callback_listener wl_surface_frame_listener;
 internal void
 wl_surface_frame_done(void *data, struct wl_callback *wl_surface_frame_callback,
@@ -446,45 +356,74 @@ wl_surface_frame_done(void *data, struct wl_callback *wl_surface_frame_callback,
   // - destroy this callback
   wl_callback_destroy(wl_surface_frame_callback);
 
-  // - request another frame
+  // - request another
   wl_surface_frame_callback = wl_surface_frame(context->wl_surface);
   wl_callback_add_listener(wl_surface_frame_callback,
                            &wl_surface_frame_listener, context);
-
-  // - presentation feedback
-  struct wp_presentation_feedback *feedback =
-      wp_presentation_feedback(context->wp_presentation, context->wl_surface);
-  wp_presentation_feedback_add_listener(
-      feedback, &wp_presentation_feedback_listener, context);
-
-  /*
-  // update
-  globalvar u32 lastFrameAt = 0;
-  if (lastFrameAt == 0) {
-    lastFrameAt = nowInMilliseconds;
-  }
-
-  u32 elapsed = nowInMilliseconds - lastFrameAt;
-  u32 millisecondsPerFrame = (u32)(33.333f);
-  if (elapsed < millisecondsPerFrame) {
-    wl_surface_commit(context->wl_surface);
-    return;
-  }
-  lastFrameAt = nowInMilliseconds;
-
-  f32 speed = 5.0f;
-  f32 deltaTime = (f32)elapsed / 1e3f;
-  context->offset += deltaTime * speed;
-
-  DrawCheckerBoard(&context->framebuffer, 0xcbd5e1, 0x0f172a, context->offset);
-  wl_surface_attach(context->wl_surface, context->wl_buffer, 0, 0);
-  wl_surface_damage_buffer(context->wl_surface, 0, 0, INT32_MAX, INT32_MAX);
   wl_surface_commit(context->wl_surface);
-  */
+
+  // // - presentation feedback
+  // struct wp_presentation_feedback *feedback =
+  //     wp_presentation_feedback(context->wp_presentation,
+  //     context->wl_surface);
+  // wp_presentation_feedback_add_listener(
+  //     feedback, &wp_presentation_feedback_listener, context);
+
+  {
+    globalvar u64 previous = 0;
+    u64 now = Now();
+    u64 elapsed = now - previous;
+
+    struct string_builder *stringBuilder = &context->stringBuilder;
+    StringBuilderAppendString(stringBuilder,
+                              &STRING_FROM_ZERO_TERMINATED("frame done fired @: "));
+    StringBuilderAppendU64(stringBuilder, now);
+    StringBuilderAppendString(stringBuilder,
+                              &STRING_FROM_ZERO_TERMINATED(" elapsed: "));
+    StringBuilderAppendU64(stringBuilder, elapsed);
+    StringBuilderAppendString(stringBuilder,
+                              &STRING_FROM_ZERO_TERMINATED("\n"));
+    struct string string = StringBuilderFlush(stringBuilder);
+    write(STDOUT_FILENO, string.value, string.length);
+
+    previous = now;
+  }
+
+  // notify game loop about frame done event
+  struct io_uring_sqe *sqe = io_uring_get_sqe(context->ring);
+  io_uring_prep_cancel(sqe, context->gameLoopOp, 0);
+  io_uring_sqe_set_data(sqe, 0);
+  io_uring_submit(context->ring);
 }
 
 comptime struct wl_callback_listener wl_surface_frame_listener = {
     .done = wl_surface_frame_done,
+};
+
+internal void xdg_toplevel_configure(void *data,
+                                     struct xdg_toplevel *xdg_toplevel,
+                                     int32_t width, int32_t height,
+                                     struct wl_array *states) {}
+
+internal void xdg_toplevel_close(void *data,
+                                 struct xdg_toplevel *xdg_toplevel) {
+  struct linux_context *context = data;
+  context->isWindowClosed = 1;
+}
+
+internal void xdg_toplevel_configure_bounds(void *data,
+                                            struct xdg_toplevel *xdg_toplevel,
+                                            int32_t width, int32_t height) {}
+
+internal void xdg_toplevel_wm_capabilities(void *data,
+                                           struct xdg_toplevel *xdg_toplevel,
+                                           struct wl_array *capabilities) {}
+
+comptime struct xdg_toplevel_listener xdg_toplevel_listener = {
+    .configure = xdg_toplevel_configure,
+    .close = xdg_toplevel_close,
+    .configure_bounds = xdg_toplevel_configure_bounds,
+    .wm_capabilities = xdg_toplevel_wm_capabilities,
 };
 
 internal void xdg_surface_configure(void *data, struct xdg_surface *xdg_surface,
@@ -493,12 +432,17 @@ internal void xdg_surface_configure(void *data, struct xdg_surface *xdg_surface,
 
   struct linux_context *context = data;
 
-  wl_surface_attach(context->wl_surface, context->wl_buffer, 0, 0);
-  wl_surface_commit(context->wl_surface);
+  if (context->isXDGSurfaceConfigured) {
+    // If this isn't the first configure event we've recieved, we already
+    // have a buffer attached, so no need to do anything, Commit the
+    // surface to apply the configure acknowledgment.
+    wl_surface_commit(context->wl_surface);
+  }
+
+  context->isXDGSurfaceConfigured = 1;
 }
 
 comptime struct xdg_surface_listener xdg_surface_listener = {
-
     .configure = xdg_surface_configure,
 };
 
@@ -515,23 +459,28 @@ internal void wl_registry_global(void *data, struct wl_registry *wl_registry,
                                  uint32_t name, const char *interface,
                                  uint32_t version) {
   struct linux_context *context = data;
-  if (strcmp(interface, wl_compositor_interface.name) == 0) {
+
+  struct string interfaceString =
+      StringFromZeroTerminated((u8 *)interface, 1024);
+  if (IsStringEqual(&interfaceString,
+                    &STRING_FROM_ZERO_TERMINATED("wl_compositor"))) {
     context->wl_compositor =
         wl_registry_bind(wl_registry, name, &wl_compositor_interface, version);
-  } else if (strcmp(interface, wl_shm_interface.name) == 0) {
+  } else if (IsStringEqual(&interfaceString,
+                           &STRING_FROM_ZERO_TERMINATED("wl_shm"))) {
     context->wl_shm =
         wl_registry_bind(wl_registry, name, &wl_shm_interface, version);
-  } else if (strcmp(interface, xdg_wm_base_interface.name) == 0) {
+  } else if (IsStringEqual(&interfaceString,
+                           &STRING_FROM_ZERO_TERMINATED("xdg_wm_base"))) {
     context->xdg_wm_base =
         wl_registry_bind(wl_registry, name, &xdg_wm_base_interface, version);
-  } else if (strcmp(interface, wl_seat_interface.name) == 0) {
+  } else if (IsStringEqual(&interfaceString,
+                           &STRING_FROM_ZERO_TERMINATED("wl_seat"))) {
     context->wl_seat =
         wl_registry_bind(wl_registry, name, &wl_seat_interface, version);
-  } else if (strcmp(interface, wp_presentation_interface.name) == 0) {
-    context->wp_presentation = wl_registry_bind(
-        wl_registry, name, &wp_presentation_interface, version);
-  } else if (strcmp(interface, wp_content_type_manager_v1_interface.name) ==
-             0) {
+  } else if (IsStringEqual(
+                 &interfaceString,
+                 &STRING_FROM_ZERO_TERMINATED("wp_content_type_manager_v1"))) {
     context->wp_content_type_manager_v1 = wl_registry_bind(
         wl_registry, name, &wp_content_type_manager_v1_interface, version);
   }
@@ -540,82 +489,6 @@ internal void wl_registry_global(void *data, struct wl_registry *wl_registry,
 comptime struct wl_registry_listener wl_registry_listener = {
     .global = wl_registry_global,
 };
-
-internal u64 Now(void) {
-  struct timespec ts;
-  clock_gettime(CLOCK_MONOTONIC, &ts);
-  return ((u64)ts.tv_sec * 1000000000 /* 1e9 */) + (u64)ts.tv_nsec;
-}
-
-void *OutputThreadMain(void *threadData) {
-  return 0;
-  struct linux_context *context = threadData;
-
-  // event loop
-  struct op_timer {
-    struct __kernel_timespec ts;
-  };
-
-  struct io_uring ring;
-  if (io_uring_queue_init(1, &ring, 0) != 0) {
-    // errorTag = ERROR_IO_URING_QUEUE_INIT;
-    return 0;
-  }
-
-  // - timer
-  struct op_timer timerOp = {};
-  {
-    struct io_uring_sqe *sqe = io_uring_get_sqe(&ring);
-    timerOp.ts.tv_nsec = 33333333; // 33.333333ms, 1ms = 1e6 ns
-
-    // one time request
-    // io_uring_prep_timeout(sqe, &timerOp.ts, 1, 0);
-
-    // infinite timers at every ts
-    io_uring_prep_timeout(sqe, &timerOp.ts, 0, IORING_TIMEOUT_MULTISHOT);
-
-    io_uring_sqe_set_data(sqe, &timerOp);
-  }
-
-  io_uring_submit(&ring);
-
-  struct io_uring_cqe *cqe;
-  u64 previousFrame = Now();
-  while (1) {
-  wait_cqe:
-    if (io_uring_wait_cqe(&ring, &cqe) != 0) {
-      if (errno == EAGAIN)
-        goto wait_cqe;
-
-      // errorTag = ERROR_IO_URING_WAIT_CQE;
-      break;
-    }
-
-    void *data = io_uring_cqe_get_data(cqe);
-    if (data == &timerOp) {
-      u64 now = Now();
-      u64 elapsed = now - previousFrame;
-
-      // printf("%lu => %luns elapsed\n", now, elapsed);
-      f32 deltaTime = (f32)elapsed / 1e9f;
-      f32 speed = 5.0f;
-
-      context->offset += deltaTime * speed;
-      // context.offset += 0.33f;
-      DrawCheckerBoard(&context->framebuffer, 0xcbd5e1, 0x0f172a,
-                       context->offset);
-      wl_surface_attach(context->wl_surface, context->wl_buffer, 0, 0);
-      wl_surface_damage_buffer(context->wl_surface, 0, 0, INT32_MAX, INT32_MAX);
-      wl_surface_commit(context->wl_surface);
-
-      previousFrame = now;
-    }
-
-    io_uring_cqe_seen(&ring, cqe);
-  }
-
-  return 0;
-}
 
 int main(int argc, char *argv[]) {
   struct linux_context context = {};
@@ -630,11 +503,11 @@ int main(int argc, char *argv[]) {
 
     // TODO: maybe MAP_UNINITIALIZED?
     *memoryArena = (struct memory_arena){
-        .size = totalMemoryAllocated,
-        .data = mmap(0, totalMemoryAllocated, PROT_READ | PROT_WRITE,
-                     MAP_PRIVATE | MAP_ANONYMOUS, -1, 0),
+        .total = totalMemoryAllocated,
+        .block = mmap(0, totalMemoryAllocated, PROT_READ | PROT_WRITE,
+                      MAP_PRIVATE | MAP_ANONYMOUS, -1, 0),
     };
-    if (memoryArena->data == MAP_FAILED) {
+    if (memoryArena->block == MAP_FAILED) {
       errorTag = ERROR_MMAP;
       goto exit;
     }
@@ -647,12 +520,20 @@ int main(int argc, char *argv[]) {
     context.xkbArena = MemoryArenaSub(memoryArena, 1 * MEGABYTES);
   }
 
+  // string builder
+  struct string_builder *stringBuilder = &context.stringBuilder;
+  struct string stdoutBuffer = MemoryArenaPushString(memoryArena, 512);
+  struct string stringBuffer = MemoryArenaPushString(memoryArena, 32);
+  stringBuilder->outBuffer = &stdoutBuffer;
+  stringBuilder->stringBuffer = &stringBuffer;
+
   // framebuffer
   struct framebuffer *framebuffer = &context.framebuffer;
   struct memory_arena *framebufferArena = &context.framebufferArena;
   {
     framebuffer->width = 1920;
     framebuffer->height = 1080;
+
     framebuffer->stride = framebuffer->width * sizeof(u32);
     u64 size = framebuffer->height * framebuffer->stride;
 
@@ -672,6 +553,13 @@ int main(int argc, char *argv[]) {
     pthread_setname_np(outputThread, "vo");
   }
   */
+
+  // - initialize xkb
+  context.xkb_context = xkb_context_new(XKB_CONTEXT_NO_FLAGS);
+  if (!context.xkb_context) {
+    errorTag = ERROR_XKB_CONTEXT_NEW;
+    goto exit;
+  }
 
   // wayland
   // - get wayland display
@@ -693,7 +581,7 @@ int main(int argc, char *argv[]) {
                            &context);
   wl_display_roundtrip(context.wl_display);
   if (!context.wl_compositor || !context.xdg_wm_base || !context.wl_shm ||
-      !context.wl_seat || !context.wp_presentation) {
+      !context.wl_seat) {
     errorTag = ERROR_WL_REGISTRY_GLOBAL;
     goto wl_exit;
   }
@@ -704,6 +592,9 @@ int main(int argc, char *argv[]) {
     errorTag = ERROR_WL_COMPOSITOR_CREATE_SURFACE;
     goto wl_exit;
   }
+
+  // - get inputs
+  wl_seat_add_listener(context.wl_seat, &wl_seat_listener, &context);
 
   // - create window
   context.xdg_surface =
@@ -724,6 +615,9 @@ int main(int argc, char *argv[]) {
     goto wl_exit;
   }
 
+  xdg_toplevel_add_listener(context.xdg_toplevel, &xdg_toplevel_listener,
+                            &context);
+
   xdg_toplevel_set_title(context.xdg_toplevel, "$PROJECT_NAME");
   if (context.wp_content_type_manager_v1) {
     struct wp_content_type_v1 *wp_content_type_v1 =
@@ -732,6 +626,13 @@ int main(int argc, char *argv[]) {
 
     wp_content_type_v1_set_content_type(wp_content_type_v1,
                                         WP_CONTENT_TYPE_V1_TYPE_GAME);
+  }
+
+  // - Perform the initial commit and wait for first configure event
+  wl_surface_commit(context.wl_surface);
+  while (wl_display_dispatch(context.wl_display) != -1 &&
+         !context.isXDGSurfaceConfigured) {
+    // intentionally left blank
   }
 
   // - attach framebuffer to window
@@ -774,25 +675,13 @@ int main(int argc, char *argv[]) {
       errorTag = ERROR_WL_SHM_CREATE_POOL;
       goto wl_exit;
     }
+
+    // - draw initial frame
+    // must be after creating wl_buffer
+    // DrawSolid(framebuffer, 0x3b82f6);
+    DrawCheckerBoard(framebuffer, 0xcbd5e1, 0x0f172a, context.offset);
+    wl_surface_attach(context.wl_surface, context.wl_buffer, 0, 0);
   }
-
-  // - draw initial frame
-  // must be after creating wl_buffer
-  // DrawSolid(framebuffer, 0x3b82f6);
-  DrawCheckerBoard(framebuffer, 0xcbd5e1, 0x0f172a, context.offset);
-
-  // - initialize xkb
-  context.xkb_context = xkb_context_new(XKB_CONTEXT_NO_FLAGS);
-  if (!context.xkb_context) {
-    errorTag = ERROR_XKB_CONTEXT_NEW;
-    goto wl_exit;
-  }
-
-  // - get inputs
-  wl_seat_add_listener(context.wl_seat, &wl_seat_listener, &context);
-
-  // - commit changes
-  wl_surface_commit(context.wl_surface);
 
   // - register frame callback
   {
@@ -802,42 +691,49 @@ int main(int argc, char *argv[]) {
                              &wl_surface_frame_listener, &context);
   }
 
+  // - commit changes
+  wl_surface_commit(context.wl_surface);
+
   // event loop
-  struct op_poll {
-    s32 fd;
-  };
+  struct op {};
 
   struct op_timer {
     struct __kernel_timespec ts;
   };
 
   struct io_uring ring;
-  if (io_uring_queue_init(4, &ring, 0) != 0) {
-    errorTag = ERROR_IO_URING_QUEUE_INIT;
-    goto wl_exit;
+  {
+    struct io_uring_params params = {
+        .features = IORING_FEAT_SUBMIT_STABLE,
+    };
+    if (io_uring_queue_init_params(4, &ring, &params) != 0) {
+      errorTag = ERROR_IO_URING_QUEUE_INIT;
+      goto wl_exit;
+    }
+
+    context.ring = &ring;
   }
 
   // - poll on wl_display
-  struct op_poll waylandOp = {};
+  struct op waylandOp = {};
   {
     struct io_uring_sqe *sqe = io_uring_get_sqe(&ring);
-    waylandOp.fd = wl_display_get_fd(context.wl_display);
-    io_uring_prep_poll_multishot(sqe, waylandOp.fd, POLLIN);
+    int fd = wl_display_get_fd(context.wl_display);
+    io_uring_prep_poll_multishot(sqe, fd, POLLIN);
     io_uring_sqe_set_data(sqe, &waylandOp);
   }
 
-  // - timer
-  struct op_timer timerOp = {};
+  // - game loop op
+  struct op_timer gameLoopOp = {};
   {
     struct io_uring_sqe *sqe = io_uring_get_sqe(&ring);
-    timerOp.ts.tv_nsec = 33333333; // 33.333333ms, 1ms = 1e6 ns
-
-    // one time request
-    // io_uring_prep_timeout(sqe, &timerOp.ts, 1, 0);
+    gameLoopOp.ts.tv_nsec = 33333333; // 33.333333ms, 1ms = 1e6 ns
 
     // infinite timers at every ts
-    io_uring_prep_timeout(sqe, &timerOp.ts, 0, IORING_TIMEOUT_MULTISHOT);
-    io_uring_sqe_set_data(sqe, &timerOp);
+    io_uring_prep_timeout(sqe, &gameLoopOp.ts, 0, IORING_TIMEOUT_MULTISHOT);
+    io_uring_sqe_set_data(sqe, &gameLoopOp);
+
+    context.gameLoopOp = &gameLoopOp;
   }
 
   io_uring_submit(&ring);
@@ -846,14 +742,17 @@ int main(int argc, char *argv[]) {
   struct io_uring_cqe *cqe;
 
   u64 previousFrame = Now();
-  while (1) {
+  while (!context.isWindowClosed) {
     while (wl_display_prepare_read(context.wl_display) != 0)
       wl_display_dispatch_pending(context.wl_display);
     wl_display_flush(context.wl_display);
 
+    int io_uring_wait_err;
   wait_cqe:
-    if (io_uring_wait_cqe(&ring, &cqe) != 0) {
-      if (errno == EAGAIN)
+    io_uring_wait_err = io_uring_wait_cqe(&ring, &cqe);
+    if (io_uring_wait_err != 0) {
+      io_uring_wait_err *= -1;
+      if (io_uring_wait_err == EAGAIN || io_uring_wait_err == EINTR)
         goto wait_cqe;
 
       errorTag = ERROR_IO_URING_WAIT_CQE;
@@ -873,41 +772,76 @@ int main(int argc, char *argv[]) {
         wl_display_cancel_read(context.wl_display);
     }
 
-    // - on timer events
-    else if (data == &timerOp) {
+    // - on game loop events
+    else if (data == &gameLoopOp) {
+      /* Wayland when app is not in focus, stops sending frame done events.
+       * Games do not stop sending update events when app becomes invisible.
+       * (e.g. music plaing in background, physics simulation goes berserk when
+       * delta time is huge) I solve this by sleeping with intervals of 33.33ms
+       * when app is in background and using frame done callback when it is in
+       * foreground.
+       */
+      b8 isFrameDoneEvent = cqe->res == -ECANCELED;
+
       u64 now = Now();
       u64 elapsed = now - previousFrame;
-      printf("%lu => %luns elapsed\n", now, elapsed);
 
-      struct wayland_present *present = &context.present;
-      if (present->isSynced) {
+      u64 targetPerFrameInNanoseconds = 33000000 /* 33.333333ms */;
+      if (elapsed >= targetPerFrameInNanoseconds) {
         f32 deltaTime = (f32)elapsed / 1e9f;
         f32 speed = 5.0f;
-
         context.offset += deltaTime * speed;
-        // context.offset += 0.33f;
+
+        // print message
+        {
+          StringBuilderAppendString(
+              stringBuilder, &STRING_FROM_ZERO_TERMINATED("frame done: "));
+          StringBuilderAppendU64(stringBuilder, isFrameDoneEvent);
+          StringBuilderAppendString(stringBuilder,
+                                    &STRING_FROM_ZERO_TERMINATED(" time: "));
+          StringBuilderAppendU64(stringBuilder, now);
+          StringBuilderAppendString(stringBuilder,
+                                    &STRING_FROM_ZERO_TERMINATED(" elapsed: "));
+          StringBuilderAppendU64(stringBuilder, elapsed);
+          StringBuilderAppendString(stringBuilder,
+                                    &STRING_FROM_ZERO_TERMINATED(" offset: "));
+          StringBuilderAppendF32(stringBuilder, context.offset, 2);
+          StringBuilderAppendString(stringBuilder,
+                                    &STRING_FROM_ZERO_TERMINATED("\n"));
+          struct string string = StringBuilderFlush(stringBuilder);
+          write(STDOUT_FILENO, string.value, string.length);
+        }
+
+        // update frame
         DrawCheckerBoard(framebuffer, 0xcbd5e1, 0x0f172a, context.offset);
+
+        previousFrame = now;
+      }
+
+      if (isFrameDoneEvent) {
+        // swap buffers when frame done
         wl_surface_attach(context.wl_surface, context.wl_buffer, 0, 0);
         wl_surface_damage_buffer(context.wl_surface, 0, 0, INT32_MAX,
                                  INT32_MAX);
-
         wl_surface_commit(context.wl_surface);
-      } else {
-        struct io_uring_sqe *sqe = io_uring_get_sqe(&ring);
-        struct __kernel_timespec ts = {
-            .tv_nsec = (long long)(present->ust + present->refresh),
-        };
-        io_uring_prep_timeout_update(sqe, &ts, (u64)&timerOp,
-                                     IORING_TIMEOUT_ABS);
-        io_uring_submit(&ring);
-        present->isSynced = 1;
-      }
 
-      previousFrame = now;
+        // - rearm timer
+        struct io_uring_sqe *sqe = io_uring_get_sqe(&ring);
+        io_uring_prep_timeout(sqe, &gameLoopOp.ts, 0, IORING_TIMEOUT_MULTISHOT);
+        io_uring_sqe_set_data(sqe, &gameLoopOp);
+        io_uring_submit(&ring);
+      }
     }
 
     io_uring_cqe_seen(&ring, cqe);
   }
+
+  io_uring_queue_exit(&ring);
+
+  xdg_toplevel_destroy(context.xdg_toplevel);
+  xdg_surface_destroy(context.xdg_surface);
+  wl_surface_destroy(context.wl_surface);
+  wl_buffer_destroy(context.wl_buffer);
 
 wl_exit:
   wl_display_disconnect(context.wl_display);

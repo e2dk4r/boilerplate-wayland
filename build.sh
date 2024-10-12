@@ -5,7 +5,7 @@ export TZ=UTC
 
 IsBuildDebug=1
 IsBuildEnabled=1
-IsTestsEnabled=0
+IsTestsEnabled=1
 
 PROJECT_NAME=test
 OUTPUT_NAME=$PROJECT_NAME
@@ -216,6 +216,7 @@ cflags="$cflags -Wno-missing-braces"
 cflags="$cflags -DCOMPILER_GCC=$IsCompilerGCC"
 cflags="$cflags -DCOMPILER_CLANG=$IsCompilerClang"
 
+cflags="$cflags -DIS_BUILD_DEBUG=$IsBuildDebug"
 if [ $IsBuildDebug -eq 1 ]; then
   cflags="$cflags -g -O0"
   cflags="$cflags -Wno-unused-but-set-variable"
