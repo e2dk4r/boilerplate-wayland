@@ -226,6 +226,8 @@ struct linux_context {
   struct xkb_keymap *xkb_keymap;
   struct xkb_state *xkb_state;
 
+  b8 isXDGSurfaceConfigured : 1;
+  b8 isWindowClosed : 1;
   struct wayland_present present;
 
   struct input inputs[2];
@@ -349,11 +351,11 @@ internal void wl_keyboard_key(void *data, struct wl_keyboard *wl_keyboard,
   } break;
   }
 
-  // printf("state %d up: %d down: %d left: %d right: %d\n", isPressed,
-  //        keyboardAndMouseInput->up.isPressed,
-  //        keyboardAndMouseInput->down.isPressed,
-  //        keyboardAndMouseInput->left.isPressed,
-  //        keyboardAndMouseInput->right.isPressed);
+  printf("state %d up: %d down: %d left: %d right: %d\n", isPressed,
+         keyboardAndMouseInput->up.isPressed,
+         keyboardAndMouseInput->down.isPressed,
+         keyboardAndMouseInput->left.isPressed,
+         keyboardAndMouseInput->right.isPressed);
 }
 
 internal void wl_keyboard_modifiers(void *data, struct wl_keyboard *wl_keyboard,
@@ -412,14 +414,16 @@ comptime struct wl_seat_listener wl_seat_listener = {
     .name = wl_seat_name,
 };
 
+internal void Render(struct linux_context *context);
 internal void wp_presentation_feedback_presented(
     void *data, struct wp_presentation_feedback *wp_presentation_feedback,
     uint32_t tv_sec_hi, uint32_t tv_sec_lo, uint32_t tv_nsec, uint32_t refresh,
     uint32_t seq_hi, uint32_t seq_lo, uint32_t flags) {
-  struct linux_context *context = data;
-
   // - destroy this callback
   wp_presentation_feedback_destroy(wp_presentation_feedback);
+
+  // - update
+  struct linux_context *context = data;
 
   struct wayland_present *present = &context->present;
   u64 nanosecondsPerSecond = 1000000000 /* 1e9 */;
@@ -446,16 +450,13 @@ wl_surface_frame_done(void *data, struct wl_callback *wl_surface_frame_callback,
   // - destroy this callback
   wl_callback_destroy(wl_surface_frame_callback);
 
-  // - request another frame
-  wl_surface_frame_callback = wl_surface_frame(context->wl_surface);
-  wl_callback_add_listener(wl_surface_frame_callback,
-                           &wl_surface_frame_listener, context);
-
   // - presentation feedback
   struct wp_presentation_feedback *feedback =
       wp_presentation_feedback(context->wp_presentation, context->wl_surface);
   wp_presentation_feedback_add_listener(
       feedback, &wp_presentation_feedback_listener, context);
+
+  Render(context);
 
   /*
   // update
@@ -479,12 +480,37 @@ wl_surface_frame_done(void *data, struct wl_callback *wl_surface_frame_callback,
   DrawCheckerBoard(&context->framebuffer, 0xcbd5e1, 0x0f172a, context->offset);
   wl_surface_attach(context->wl_surface, context->wl_buffer, 0, 0);
   wl_surface_damage_buffer(context->wl_surface, 0, 0, INT32_MAX, INT32_MAX);
-  wl_surface_commit(context->wl_surface);
   */
 }
 
 comptime struct wl_callback_listener wl_surface_frame_listener = {
     .done = wl_surface_frame_done,
+};
+
+internal void xdg_toplevel_configure(void *data,
+                                     struct xdg_toplevel *xdg_toplevel,
+                                     int32_t width, int32_t height,
+                                     struct wl_array *states) {}
+
+internal void xdg_toplevel_close(void *data,
+                                 struct xdg_toplevel *xdg_toplevel) {
+  struct linux_context *context = data;
+  context->isWindowClosed = 1;
+}
+
+internal void xdg_toplevel_configure_bounds(void *data,
+                                            struct xdg_toplevel *xdg_toplevel,
+                                            int32_t width, int32_t height) {}
+
+internal void xdg_toplevel_wm_capabilities(void *data,
+                                           struct xdg_toplevel *xdg_toplevel,
+                                           struct wl_array *capabilities) {}
+
+comptime struct xdg_toplevel_listener xdg_toplevel_listener = {
+    .configure = xdg_toplevel_configure,
+    .close = xdg_toplevel_close,
+    .configure_bounds = xdg_toplevel_configure_bounds,
+    .wm_capabilities = xdg_toplevel_wm_capabilities,
 };
 
 internal void xdg_surface_configure(void *data, struct xdg_surface *xdg_surface,
@@ -493,12 +519,17 @@ internal void xdg_surface_configure(void *data, struct xdg_surface *xdg_surface,
 
   struct linux_context *context = data;
 
-  wl_surface_attach(context->wl_surface, context->wl_buffer, 0, 0);
-  wl_surface_commit(context->wl_surface);
+  if (context->isXDGSurfaceConfigured) {
+    // If this isn't the first configure event we've recieved, we already
+    // have a buffer attached, so no need to do anything, Commit the
+    // surface to apply the configure acknowledgment.
+    wl_surface_commit(context->wl_surface);
+  }
+
+  context->isXDGSurfaceConfigured = 1;
 }
 
 comptime struct xdg_surface_listener xdg_surface_listener = {
-
     .configure = xdg_surface_configure,
 };
 
@@ -547,74 +578,38 @@ internal u64 Now(void) {
   return ((u64)ts.tv_sec * 1000000000 /* 1e9 */) + (u64)ts.tv_nsec;
 }
 
-void *OutputThreadMain(void *threadData) {
-  return 0;
-  struct linux_context *context = threadData;
+internal void Render(struct linux_context *context) {
+  struct framebuffer *framebuffer = &context->framebuffer;
 
-  // event loop
-  struct op_timer {
-    struct __kernel_timespec ts;
-  };
+  globalvar u64 lastFrameAt = 0;
+  u64 now = Now();
+  if (lastFrameAt == 0)
+    lastFrameAt = now;
+  u64 elapsed = now - lastFrameAt;
 
-  struct io_uring ring;
-  if (io_uring_queue_init(1, &ring, 0) != 0) {
-    // errorTag = ERROR_IO_URING_QUEUE_INIT;
-    return 0;
+  u64 targetPerFrameInNanoseconds = 33000000 /* 33.333333ms */;
+  if (elapsed >= targetPerFrameInNanoseconds) {
+    f32 deltaTime = (f32)elapsed / 1e9f;
+    f32 speed = 5.0f;
+    context->offset += deltaTime * speed;
+
+    printf("now: %lu elapsed: %lu offset: %.2f\n", now, elapsed,
+           context->offset);
+
+    DrawCheckerBoard(framebuffer, 0xcbd5e1, 0x0f172a, context->offset);
+    wl_surface_damage_buffer(context->wl_surface, 0, 0, INT32_MAX, INT32_MAX);
+    wl_surface_attach(context->wl_surface, context->wl_buffer, 0, 0);
+
+    lastFrameAt = now;
   }
 
-  // - timer
-  struct op_timer timerOp = {};
-  {
-    struct io_uring_sqe *sqe = io_uring_get_sqe(&ring);
-    timerOp.ts.tv_nsec = 33333333; // 33.333333ms, 1ms = 1e6 ns
+  // - request another frame from wayland
+  struct wl_callback *wl_surface_frame_callback =
+      wl_surface_frame(context->wl_surface);
+  wl_callback_add_listener(wl_surface_frame_callback,
+                           &wl_surface_frame_listener, context);
 
-    // one time request
-    // io_uring_prep_timeout(sqe, &timerOp.ts, 1, 0);
-
-    // infinite timers at every ts
-    io_uring_prep_timeout(sqe, &timerOp.ts, 0, IORING_TIMEOUT_MULTISHOT);
-
-    io_uring_sqe_set_data(sqe, &timerOp);
-  }
-
-  io_uring_submit(&ring);
-
-  struct io_uring_cqe *cqe;
-  u64 previousFrame = Now();
-  while (1) {
-  wait_cqe:
-    if (io_uring_wait_cqe(&ring, &cqe) != 0) {
-      if (errno == EAGAIN)
-        goto wait_cqe;
-
-      // errorTag = ERROR_IO_URING_WAIT_CQE;
-      break;
-    }
-
-    void *data = io_uring_cqe_get_data(cqe);
-    if (data == &timerOp) {
-      u64 now = Now();
-      u64 elapsed = now - previousFrame;
-
-      // printf("%lu => %luns elapsed\n", now, elapsed);
-      f32 deltaTime = (f32)elapsed / 1e9f;
-      f32 speed = 5.0f;
-
-      context->offset += deltaTime * speed;
-      // context.offset += 0.33f;
-      DrawCheckerBoard(&context->framebuffer, 0xcbd5e1, 0x0f172a,
-                       context->offset);
-      wl_surface_attach(context->wl_surface, context->wl_buffer, 0, 0);
-      wl_surface_damage_buffer(context->wl_surface, 0, 0, INT32_MAX, INT32_MAX);
-      wl_surface_commit(context->wl_surface);
-
-      previousFrame = now;
-    }
-
-    io_uring_cqe_seen(&ring, cqe);
-  }
-
-  return 0;
+  wl_surface_commit(context->wl_surface);
 }
 
 int main(int argc, char *argv[]) {
@@ -653,6 +648,7 @@ int main(int argc, char *argv[]) {
   {
     framebuffer->width = 1920;
     framebuffer->height = 1080;
+
     framebuffer->stride = framebuffer->width * sizeof(u32);
     u64 size = framebuffer->height * framebuffer->stride;
 
@@ -672,6 +668,13 @@ int main(int argc, char *argv[]) {
     pthread_setname_np(outputThread, "vo");
   }
   */
+
+  // - initialize xkb
+  context.xkb_context = xkb_context_new(XKB_CONTEXT_NO_FLAGS);
+  if (!context.xkb_context) {
+    errorTag = ERROR_XKB_CONTEXT_NEW;
+    goto exit;
+  }
 
   // wayland
   // - get wayland display
@@ -705,6 +708,9 @@ int main(int argc, char *argv[]) {
     goto wl_exit;
   }
 
+  // - get inputs
+  wl_seat_add_listener(context.wl_seat, &wl_seat_listener, &context);
+
   // - create window
   context.xdg_surface =
       xdg_wm_base_get_xdg_surface(context.xdg_wm_base, context.wl_surface);
@@ -724,6 +730,9 @@ int main(int argc, char *argv[]) {
     goto wl_exit;
   }
 
+  xdg_toplevel_add_listener(context.xdg_toplevel, &xdg_toplevel_listener,
+                            &context);
+
   xdg_toplevel_set_title(context.xdg_toplevel, "$PROJECT_NAME");
   if (context.wp_content_type_manager_v1) {
     struct wp_content_type_v1 *wp_content_type_v1 =
@@ -732,6 +741,13 @@ int main(int argc, char *argv[]) {
 
     wp_content_type_v1_set_content_type(wp_content_type_v1,
                                         WP_CONTENT_TYPE_V1_TYPE_GAME);
+  }
+
+  // - Perform the initial commit and wait for first configure event
+  wl_surface_commit(context.wl_surface);
+  while (wl_display_dispatch(context.wl_display) != -1 &&
+         !context.isXDGSurfaceConfigured) {
+    // intentionally left blank
   }
 
   // - attach framebuffer to window
@@ -774,33 +790,31 @@ int main(int argc, char *argv[]) {
       errorTag = ERROR_WL_SHM_CREATE_POOL;
       goto wl_exit;
     }
+
+    // - draw initial frame
+    // must be after creating wl_buffer
+    // DrawSolid(framebuffer, 0x3b82f6);
+    DrawCheckerBoard(framebuffer, 0xcbd5e1, 0x0f172a, context.offset);
+    wl_surface_attach(context.wl_surface, context.wl_buffer, 0, 0);
   }
-
-  // - draw initial frame
-  // must be after creating wl_buffer
-  // DrawSolid(framebuffer, 0x3b82f6);
-  DrawCheckerBoard(framebuffer, 0xcbd5e1, 0x0f172a, context.offset);
-
-  // - initialize xkb
-  context.xkb_context = xkb_context_new(XKB_CONTEXT_NO_FLAGS);
-  if (!context.xkb_context) {
-    errorTag = ERROR_XKB_CONTEXT_NEW;
-    goto wl_exit;
-  }
-
-  // - get inputs
-  wl_seat_add_listener(context.wl_seat, &wl_seat_listener, &context);
-
-  // - commit changes
-  wl_surface_commit(context.wl_surface);
 
   // - register frame callback
   {
-    struct wl_callback *wl_surface_frame_callback =
-        wl_surface_frame(context.wl_surface);
-    wl_callback_add_listener(wl_surface_frame_callback,
-                             &wl_surface_frame_listener, &context);
+    // struct wl_callback *wl_surface_frame_callback =
+    //     wl_surface_frame(context.wl_surface);
+    // wl_callback_add_listener(wl_surface_frame_callback,
+    //                          &wl_surface_frame_listener, &context);
+
+    struct wp_presentation_feedback *feedback =
+        wp_presentation_feedback(context.wp_presentation, context.wl_surface);
+    wp_presentation_feedback_add_listener(
+        feedback, &wp_presentation_feedback_listener, &context);
   }
+
+  // - commit changes
+  // wl_surface_commit(context.wl_surface);
+
+  Render(&context);
 
   // event loop
   struct op_poll {
@@ -812,9 +826,14 @@ int main(int argc, char *argv[]) {
   };
 
   struct io_uring ring;
-  if (io_uring_queue_init(4, &ring, 0) != 0) {
-    errorTag = ERROR_IO_URING_QUEUE_INIT;
-    goto wl_exit;
+  {
+    struct io_uring_params params = {
+        .features = IORING_FEAT_SUBMIT_STABLE,
+    };
+    if (io_uring_queue_init_params(4, &ring, &params) != 0) {
+      errorTag = ERROR_IO_URING_QUEUE_INIT;
+      goto wl_exit;
+    }
   }
 
   // - poll on wl_display
@@ -846,7 +865,7 @@ int main(int argc, char *argv[]) {
   struct io_uring_cqe *cqe;
 
   u64 previousFrame = Now();
-  while (1) {
+  while (!context.isWindowClosed) {
     while (wl_display_prepare_read(context.wl_display) != 0)
       wl_display_dispatch_pending(context.wl_display);
     wl_display_flush(context.wl_display);
@@ -874,25 +893,29 @@ int main(int argc, char *argv[]) {
     }
 
     // - on timer events
-    else if (data == &timerOp) {
+    else if (0 && data == &timerOp) {
       u64 now = Now();
       u64 elapsed = now - previousFrame;
-      printf("%lu => %luns elapsed\n", now, elapsed);
+      u64 updateElapsed = 0;
 
       struct wayland_present *present = &context.present;
       if (present->isSynced) {
         f32 deltaTime = (f32)elapsed / 1e9f;
         f32 speed = 5.0f;
 
-        context.offset += deltaTime * speed;
-        // context.offset += 0.33f;
-        DrawCheckerBoard(framebuffer, 0xcbd5e1, 0x0f172a, context.offset);
-        wl_surface_attach(context.wl_surface, context.wl_buffer, 0, 0);
-        wl_surface_damage_buffer(context.wl_surface, 0, 0, INT32_MAX,
-                                 INT32_MAX);
+        u64 updateStartedAt = Now();
+        {
+          context.offset += deltaTime * speed;
+          // context.offset += 0.33f;
+          DrawCheckerBoard(framebuffer, 0xcbd5e1, 0x0f172a, context.offset);
+          wl_surface_attach(context.wl_surface, context.wl_buffer, 0, 0);
+          wl_surface_damage_buffer(context.wl_surface, 0, 0, INT32_MAX,
+                                   INT32_MAX);
+        }
+        updateElapsed = Now() - updateStartedAt;
 
         wl_surface_commit(context.wl_surface);
-      } else {
+      } else if (present->ust) {
         struct io_uring_sqe *sqe = io_uring_get_sqe(&ring);
         struct __kernel_timespec ts = {
             .tv_nsec = (long long)(present->ust + present->refresh),
@@ -902,12 +925,21 @@ int main(int argc, char *argv[]) {
         io_uring_submit(&ring);
         present->isSynced = 1;
       }
+      printf("%lu => %luns elapsed update: %lums\n", now, elapsed,
+             updateElapsed / (u64)1e6);
 
       previousFrame = now;
     }
 
     io_uring_cqe_seen(&ring, cqe);
   }
+
+  io_uring_queue_exit(&ring);
+
+  xdg_toplevel_destroy(context.xdg_toplevel);
+  xdg_surface_destroy(context.xdg_surface);
+  wl_surface_destroy(context.wl_surface);
+  wl_buffer_destroy(context.wl_buffer);
 
 wl_exit:
   wl_display_disconnect(context.wl_display);

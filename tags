@@ -55,7 +55,230 @@
 !_TAG_ROLE_DESCRIPTION!C++!header	system	/system header/
 !_TAG_ROLE_DESCRIPTION!C++!macro	undef	/undefined/
 CONTENT_TYPE_V1_CLIENT_PROTOCOL_H	build/protocol/content-type-v1-client-protocol.h	/^#define CONTENT_TYPE_V1_CLIENT_PROTOCOL_H$/;"	d
+IORING_ACCEPT_DONTWAIT	/usr/include/liburing/io_uring.h	/^#define IORING_ACCEPT_DONTWAIT	/;"	d
+IORING_ACCEPT_MULTISHOT	/usr/include/liburing/io_uring.h	/^#define IORING_ACCEPT_MULTISHOT	/;"	d
+IORING_ACCEPT_POLL_FIRST	/usr/include/liburing/io_uring.h	/^#define IORING_ACCEPT_POLL_FIRST	/;"	d
+IORING_ASYNC_CANCEL_ALL	/usr/include/liburing/io_uring.h	/^#define IORING_ASYNC_CANCEL_ALL	/;"	d
+IORING_ASYNC_CANCEL_ANY	/usr/include/liburing/io_uring.h	/^#define IORING_ASYNC_CANCEL_ANY	/;"	d
+IORING_ASYNC_CANCEL_FD	/usr/include/liburing/io_uring.h	/^#define IORING_ASYNC_CANCEL_FD	/;"	d
+IORING_ASYNC_CANCEL_FD_FIXED	/usr/include/liburing/io_uring.h	/^#define IORING_ASYNC_CANCEL_FD_FIXED	/;"	d
+IORING_CQE_BUFFER_SHIFT	/usr/include/liburing/io_uring.h	/^	IORING_CQE_BUFFER_SHIFT		= 16,$/;"	e	enum:__anonb6972f0d0d03
+IORING_CQE_F_BUFFER	/usr/include/liburing/io_uring.h	/^#define IORING_CQE_F_BUFFER	/;"	d
+IORING_CQE_F_MORE	/usr/include/liburing/io_uring.h	/^#define IORING_CQE_F_MORE	/;"	d
+IORING_CQE_F_NOTIF	/usr/include/liburing/io_uring.h	/^#define IORING_CQE_F_NOTIF	/;"	d
+IORING_CQE_F_SOCK_NONEMPTY	/usr/include/liburing/io_uring.h	/^#define IORING_CQE_F_SOCK_NONEMPTY	/;"	d
+IORING_CQ_EVENTFD_DISABLED	/usr/include/liburing/io_uring.h	/^#define IORING_CQ_EVENTFD_DISABLED	/;"	d
+IORING_ENTER_EXT_ARG	/usr/include/liburing/io_uring.h	/^#define IORING_ENTER_EXT_ARG	/;"	d
+IORING_ENTER_GETEVENTS	/usr/include/liburing/io_uring.h	/^#define IORING_ENTER_GETEVENTS	/;"	d
+IORING_ENTER_REGISTERED_RING	/usr/include/liburing/io_uring.h	/^#define IORING_ENTER_REGISTERED_RING	/;"	d
+IORING_ENTER_SQ_WAIT	/usr/include/liburing/io_uring.h	/^#define IORING_ENTER_SQ_WAIT	/;"	d
+IORING_ENTER_SQ_WAKEUP	/usr/include/liburing/io_uring.h	/^#define IORING_ENTER_SQ_WAKEUP	/;"	d
+IORING_FEAT_CQE_SKIP	/usr/include/liburing/io_uring.h	/^#define IORING_FEAT_CQE_SKIP	/;"	d
+IORING_FEAT_CUR_PERSONALITY	/usr/include/liburing/io_uring.h	/^#define IORING_FEAT_CUR_PERSONALITY	/;"	d
+IORING_FEAT_EXT_ARG	/usr/include/liburing/io_uring.h	/^#define IORING_FEAT_EXT_ARG	/;"	d
+IORING_FEAT_FAST_POLL	/usr/include/liburing/io_uring.h	/^#define IORING_FEAT_FAST_POLL	/;"	d
+IORING_FEAT_LINKED_FILE	/usr/include/liburing/io_uring.h	/^#define IORING_FEAT_LINKED_FILE	/;"	d
+IORING_FEAT_NATIVE_WORKERS	/usr/include/liburing/io_uring.h	/^#define IORING_FEAT_NATIVE_WORKERS	/;"	d
+IORING_FEAT_NODROP	/usr/include/liburing/io_uring.h	/^#define IORING_FEAT_NODROP	/;"	d
+IORING_FEAT_POLL_32BITS	/usr/include/liburing/io_uring.h	/^#define IORING_FEAT_POLL_32BITS /;"	d
+IORING_FEAT_RECVSEND_BUNDLE	/usr/include/liburing/io_uring.h	/^#define IORING_FEAT_RECVSEND_BUNDLE	/;"	d
+IORING_FEAT_REG_REG_RING	/usr/include/liburing/io_uring.h	/^#define IORING_FEAT_REG_REG_RING	/;"	d
+IORING_FEAT_RSRC_TAGS	/usr/include/liburing/io_uring.h	/^#define IORING_FEAT_RSRC_TAGS	/;"	d
+IORING_FEAT_RW_CUR_POS	/usr/include/liburing/io_uring.h	/^#define IORING_FEAT_RW_CUR_POS	/;"	d
+IORING_FEAT_SINGLE_MMAP	/usr/include/liburing/io_uring.h	/^#define IORING_FEAT_SINGLE_MMAP	/;"	d
+IORING_FEAT_SQPOLL_NONFIXED	/usr/include/liburing/io_uring.h	/^#define IORING_FEAT_SQPOLL_NONFIXED	/;"	d
+IORING_FEAT_SUBMIT_STABLE	/usr/include/liburing/io_uring.h	/^#define IORING_FEAT_SUBMIT_STABLE	/;"	d
+IORING_FILE_INDEX_ALLOC	/usr/include/liburing/io_uring.h	/^#define IORING_FILE_INDEX_ALLOC	/;"	d
+IORING_FIXED_FD_NO_CLOEXEC	/usr/include/liburing/io_uring.h	/^#define IORING_FIXED_FD_NO_CLOEXEC	/;"	d
+IORING_FSYNC_DATASYNC	/usr/include/liburing/io_uring.h	/^#define IORING_FSYNC_DATASYNC	/;"	d
+IORING_LINK_TIMEOUT_UPDATE	/usr/include/liburing/io_uring.h	/^#define IORING_LINK_TIMEOUT_UPDATE	/;"	d
+IORING_MSG_DATA	/usr/include/liburing/io_uring.h	/^	IORING_MSG_DATA,	\/* pass sqe->len as 'res' and off as user_data *\/$/;"	e	enum:__anonb6972f0d0c03
+IORING_MSG_RING_CQE_SKIP	/usr/include/liburing/io_uring.h	/^#define IORING_MSG_RING_CQE_SKIP	/;"	d
+IORING_MSG_RING_FLAGS_PASS	/usr/include/liburing/io_uring.h	/^#define IORING_MSG_RING_FLAGS_PASS	/;"	d
+IORING_MSG_SEND_FD	/usr/include/liburing/io_uring.h	/^	IORING_MSG_SEND_FD,	\/* send a registered fd to another ring *\/$/;"	e	enum:__anonb6972f0d0c03
+IORING_NOP_INJECT_RESULT	/usr/include/liburing/io_uring.h	/^#define IORING_NOP_INJECT_RESULT	/;"	d
+IORING_NOTIF_USAGE_ZC_COPIED	/usr/include/liburing/io_uring.h	/^#define IORING_NOTIF_USAGE_ZC_COPIED /;"	d
+IORING_OFF_CQ_RING	/usr/include/liburing/io_uring.h	/^#define IORING_OFF_CQ_RING	/;"	d
+IORING_OFF_MMAP_MASK	/usr/include/liburing/io_uring.h	/^#define IORING_OFF_MMAP_MASK	/;"	d
+IORING_OFF_PBUF_RING	/usr/include/liburing/io_uring.h	/^#define IORING_OFF_PBUF_RING	/;"	d
+IORING_OFF_PBUF_SHIFT	/usr/include/liburing/io_uring.h	/^#define IORING_OFF_PBUF_SHIFT	/;"	d
+IORING_OFF_SQES	/usr/include/liburing/io_uring.h	/^#define IORING_OFF_SQES	/;"	d
+IORING_OFF_SQ_RING	/usr/include/liburing/io_uring.h	/^#define IORING_OFF_SQ_RING	/;"	d
+IORING_OP_ACCEPT	/usr/include/liburing/io_uring.h	/^	IORING_OP_ACCEPT,$/;"	e	enum:io_uring_op
+IORING_OP_ASYNC_CANCEL	/usr/include/liburing/io_uring.h	/^	IORING_OP_ASYNC_CANCEL,$/;"	e	enum:io_uring_op
+IORING_OP_BIND	/usr/include/liburing/io_uring.h	/^	IORING_OP_BIND,$/;"	e	enum:io_uring_op
+IORING_OP_CLOSE	/usr/include/liburing/io_uring.h	/^	IORING_OP_CLOSE,$/;"	e	enum:io_uring_op
+IORING_OP_CONNECT	/usr/include/liburing/io_uring.h	/^	IORING_OP_CONNECT,$/;"	e	enum:io_uring_op
+IORING_OP_EPOLL_CTL	/usr/include/liburing/io_uring.h	/^	IORING_OP_EPOLL_CTL,$/;"	e	enum:io_uring_op
+IORING_OP_FADVISE	/usr/include/liburing/io_uring.h	/^	IORING_OP_FADVISE,$/;"	e	enum:io_uring_op
+IORING_OP_FALLOCATE	/usr/include/liburing/io_uring.h	/^	IORING_OP_FALLOCATE,$/;"	e	enum:io_uring_op
+IORING_OP_FGETXATTR	/usr/include/liburing/io_uring.h	/^	IORING_OP_FGETXATTR,$/;"	e	enum:io_uring_op
+IORING_OP_FILES_UPDATE	/usr/include/liburing/io_uring.h	/^	IORING_OP_FILES_UPDATE,$/;"	e	enum:io_uring_op
+IORING_OP_FIXED_FD_INSTALL	/usr/include/liburing/io_uring.h	/^	IORING_OP_FIXED_FD_INSTALL,$/;"	e	enum:io_uring_op
+IORING_OP_FSETXATTR	/usr/include/liburing/io_uring.h	/^	IORING_OP_FSETXATTR,$/;"	e	enum:io_uring_op
+IORING_OP_FSYNC	/usr/include/liburing/io_uring.h	/^	IORING_OP_FSYNC,$/;"	e	enum:io_uring_op
+IORING_OP_FTRUNCATE	/usr/include/liburing/io_uring.h	/^	IORING_OP_FTRUNCATE,$/;"	e	enum:io_uring_op
+IORING_OP_FUTEX_WAIT	/usr/include/liburing/io_uring.h	/^	IORING_OP_FUTEX_WAIT,$/;"	e	enum:io_uring_op
+IORING_OP_FUTEX_WAITV	/usr/include/liburing/io_uring.h	/^	IORING_OP_FUTEX_WAITV,$/;"	e	enum:io_uring_op
+IORING_OP_FUTEX_WAKE	/usr/include/liburing/io_uring.h	/^	IORING_OP_FUTEX_WAKE,$/;"	e	enum:io_uring_op
+IORING_OP_GETXATTR	/usr/include/liburing/io_uring.h	/^	IORING_OP_GETXATTR,$/;"	e	enum:io_uring_op
+IORING_OP_LAST	/usr/include/liburing/io_uring.h	/^	IORING_OP_LAST,$/;"	e	enum:io_uring_op
+IORING_OP_LINKAT	/usr/include/liburing/io_uring.h	/^	IORING_OP_LINKAT,$/;"	e	enum:io_uring_op
+IORING_OP_LINK_TIMEOUT	/usr/include/liburing/io_uring.h	/^	IORING_OP_LINK_TIMEOUT,$/;"	e	enum:io_uring_op
+IORING_OP_LISTEN	/usr/include/liburing/io_uring.h	/^	IORING_OP_LISTEN,$/;"	e	enum:io_uring_op
+IORING_OP_MADVISE	/usr/include/liburing/io_uring.h	/^	IORING_OP_MADVISE,$/;"	e	enum:io_uring_op
+IORING_OP_MKDIRAT	/usr/include/liburing/io_uring.h	/^	IORING_OP_MKDIRAT,$/;"	e	enum:io_uring_op
+IORING_OP_MSG_RING	/usr/include/liburing/io_uring.h	/^	IORING_OP_MSG_RING,$/;"	e	enum:io_uring_op
+IORING_OP_NOP	/usr/include/liburing/io_uring.h	/^	IORING_OP_NOP,$/;"	e	enum:io_uring_op
+IORING_OP_OPENAT	/usr/include/liburing/io_uring.h	/^	IORING_OP_OPENAT,$/;"	e	enum:io_uring_op
+IORING_OP_OPENAT2	/usr/include/liburing/io_uring.h	/^	IORING_OP_OPENAT2,$/;"	e	enum:io_uring_op
+IORING_OP_POLL_ADD	/usr/include/liburing/io_uring.h	/^	IORING_OP_POLL_ADD,$/;"	e	enum:io_uring_op
+IORING_OP_POLL_REMOVE	/usr/include/liburing/io_uring.h	/^	IORING_OP_POLL_REMOVE,$/;"	e	enum:io_uring_op
+IORING_OP_PROVIDE_BUFFERS	/usr/include/liburing/io_uring.h	/^	IORING_OP_PROVIDE_BUFFERS,$/;"	e	enum:io_uring_op
+IORING_OP_READ	/usr/include/liburing/io_uring.h	/^	IORING_OP_READ,$/;"	e	enum:io_uring_op
+IORING_OP_READV	/usr/include/liburing/io_uring.h	/^	IORING_OP_READV,$/;"	e	enum:io_uring_op
+IORING_OP_READ_FIXED	/usr/include/liburing/io_uring.h	/^	IORING_OP_READ_FIXED,$/;"	e	enum:io_uring_op
+IORING_OP_READ_MULTISHOT	/usr/include/liburing/io_uring.h	/^	IORING_OP_READ_MULTISHOT,$/;"	e	enum:io_uring_op
+IORING_OP_RECV	/usr/include/liburing/io_uring.h	/^	IORING_OP_RECV,$/;"	e	enum:io_uring_op
+IORING_OP_RECVMSG	/usr/include/liburing/io_uring.h	/^	IORING_OP_RECVMSG,$/;"	e	enum:io_uring_op
+IORING_OP_REMOVE_BUFFERS	/usr/include/liburing/io_uring.h	/^	IORING_OP_REMOVE_BUFFERS,$/;"	e	enum:io_uring_op
+IORING_OP_RENAMEAT	/usr/include/liburing/io_uring.h	/^	IORING_OP_RENAMEAT,$/;"	e	enum:io_uring_op
+IORING_OP_SEND	/usr/include/liburing/io_uring.h	/^	IORING_OP_SEND,$/;"	e	enum:io_uring_op
+IORING_OP_SENDMSG	/usr/include/liburing/io_uring.h	/^	IORING_OP_SENDMSG,$/;"	e	enum:io_uring_op
+IORING_OP_SENDMSG_ZC	/usr/include/liburing/io_uring.h	/^	IORING_OP_SENDMSG_ZC,$/;"	e	enum:io_uring_op
+IORING_OP_SEND_ZC	/usr/include/liburing/io_uring.h	/^	IORING_OP_SEND_ZC,$/;"	e	enum:io_uring_op
+IORING_OP_SETXATTR	/usr/include/liburing/io_uring.h	/^	IORING_OP_SETXATTR,$/;"	e	enum:io_uring_op
+IORING_OP_SHUTDOWN	/usr/include/liburing/io_uring.h	/^	IORING_OP_SHUTDOWN,$/;"	e	enum:io_uring_op
+IORING_OP_SOCKET	/usr/include/liburing/io_uring.h	/^	IORING_OP_SOCKET,$/;"	e	enum:io_uring_op
+IORING_OP_SPLICE	/usr/include/liburing/io_uring.h	/^	IORING_OP_SPLICE,$/;"	e	enum:io_uring_op
+IORING_OP_STATX	/usr/include/liburing/io_uring.h	/^	IORING_OP_STATX,$/;"	e	enum:io_uring_op
+IORING_OP_SYMLINKAT	/usr/include/liburing/io_uring.h	/^	IORING_OP_SYMLINKAT,$/;"	e	enum:io_uring_op
+IORING_OP_SYNC_FILE_RANGE	/usr/include/liburing/io_uring.h	/^	IORING_OP_SYNC_FILE_RANGE,$/;"	e	enum:io_uring_op
+IORING_OP_TEE	/usr/include/liburing/io_uring.h	/^	IORING_OP_TEE,$/;"	e	enum:io_uring_op
+IORING_OP_TIMEOUT	/usr/include/liburing/io_uring.h	/^	IORING_OP_TIMEOUT,$/;"	e	enum:io_uring_op
+IORING_OP_TIMEOUT_REMOVE	/usr/include/liburing/io_uring.h	/^	IORING_OP_TIMEOUT_REMOVE,$/;"	e	enum:io_uring_op
+IORING_OP_UNLINKAT	/usr/include/liburing/io_uring.h	/^	IORING_OP_UNLINKAT,$/;"	e	enum:io_uring_op
+IORING_OP_URING_CMD	/usr/include/liburing/io_uring.h	/^	IORING_OP_URING_CMD,$/;"	e	enum:io_uring_op
+IORING_OP_WAITID	/usr/include/liburing/io_uring.h	/^	IORING_OP_WAITID,$/;"	e	enum:io_uring_op
+IORING_OP_WRITE	/usr/include/liburing/io_uring.h	/^	IORING_OP_WRITE,$/;"	e	enum:io_uring_op
+IORING_OP_WRITEV	/usr/include/liburing/io_uring.h	/^	IORING_OP_WRITEV,$/;"	e	enum:io_uring_op
+IORING_OP_WRITE_FIXED	/usr/include/liburing/io_uring.h	/^	IORING_OP_WRITE_FIXED,$/;"	e	enum:io_uring_op
+IORING_POLL_ADD_LEVEL	/usr/include/liburing/io_uring.h	/^#define IORING_POLL_ADD_LEVEL	/;"	d
+IORING_POLL_ADD_MULTI	/usr/include/liburing/io_uring.h	/^#define IORING_POLL_ADD_MULTI	/;"	d
+IORING_POLL_UPDATE_EVENTS	/usr/include/liburing/io_uring.h	/^#define IORING_POLL_UPDATE_EVENTS	/;"	d
+IORING_POLL_UPDATE_USER_DATA	/usr/include/liburing/io_uring.h	/^#define IORING_POLL_UPDATE_USER_DATA	/;"	d
+IORING_RECVSEND_BUNDLE	/usr/include/liburing/io_uring.h	/^#define IORING_RECVSEND_BUNDLE	/;"	d
+IORING_RECVSEND_FIXED_BUF	/usr/include/liburing/io_uring.h	/^#define IORING_RECVSEND_FIXED_BUF	/;"	d
+IORING_RECVSEND_POLL_FIRST	/usr/include/liburing/io_uring.h	/^#define IORING_RECVSEND_POLL_FIRST	/;"	d
+IORING_RECV_MULTISHOT	/usr/include/liburing/io_uring.h	/^#define IORING_RECV_MULTISHOT	/;"	d
+IORING_REGISTER_BUFFERS	/usr/include/liburing/io_uring.h	/^	IORING_REGISTER_BUFFERS			= 0,$/;"	e	enum:__anonb6972f0d0e03
+IORING_REGISTER_BUFFERS2	/usr/include/liburing/io_uring.h	/^	IORING_REGISTER_BUFFERS2		= 15,$/;"	e	enum:__anonb6972f0d0e03
+IORING_REGISTER_BUFFERS_UPDATE	/usr/include/liburing/io_uring.h	/^	IORING_REGISTER_BUFFERS_UPDATE		= 16,$/;"	e	enum:__anonb6972f0d0e03
+IORING_REGISTER_ENABLE_RINGS	/usr/include/liburing/io_uring.h	/^	IORING_REGISTER_ENABLE_RINGS		= 12,$/;"	e	enum:__anonb6972f0d0e03
+IORING_REGISTER_EVENTFD	/usr/include/liburing/io_uring.h	/^	IORING_REGISTER_EVENTFD			= 4,$/;"	e	enum:__anonb6972f0d0e03
+IORING_REGISTER_EVENTFD_ASYNC	/usr/include/liburing/io_uring.h	/^	IORING_REGISTER_EVENTFD_ASYNC		= 7,$/;"	e	enum:__anonb6972f0d0e03
+IORING_REGISTER_FILES	/usr/include/liburing/io_uring.h	/^	IORING_REGISTER_FILES			= 2,$/;"	e	enum:__anonb6972f0d0e03
+IORING_REGISTER_FILES2	/usr/include/liburing/io_uring.h	/^	IORING_REGISTER_FILES2			= 13,$/;"	e	enum:__anonb6972f0d0e03
+IORING_REGISTER_FILES_SKIP	/usr/include/liburing/io_uring.h	/^#define IORING_REGISTER_FILES_SKIP	/;"	d
+IORING_REGISTER_FILES_UPDATE	/usr/include/liburing/io_uring.h	/^	IORING_REGISTER_FILES_UPDATE		= 6,$/;"	e	enum:__anonb6972f0d0e03
+IORING_REGISTER_FILES_UPDATE2	/usr/include/liburing/io_uring.h	/^	IORING_REGISTER_FILES_UPDATE2		= 14,$/;"	e	enum:__anonb6972f0d0e03
+IORING_REGISTER_FILE_ALLOC_RANGE	/usr/include/liburing/io_uring.h	/^	IORING_REGISTER_FILE_ALLOC_RANGE	= 25,$/;"	e	enum:__anonb6972f0d0e03
+IORING_REGISTER_IOWQ_AFF	/usr/include/liburing/io_uring.h	/^	IORING_REGISTER_IOWQ_AFF		= 17,$/;"	e	enum:__anonb6972f0d0e03
+IORING_REGISTER_IOWQ_MAX_WORKERS	/usr/include/liburing/io_uring.h	/^	IORING_REGISTER_IOWQ_MAX_WORKERS	= 19,$/;"	e	enum:__anonb6972f0d0e03
+IORING_REGISTER_LAST	/usr/include/liburing/io_uring.h	/^	IORING_REGISTER_LAST,$/;"	e	enum:__anonb6972f0d0e03
+IORING_REGISTER_NAPI	/usr/include/liburing/io_uring.h	/^	IORING_REGISTER_NAPI			= 27,$/;"	e	enum:__anonb6972f0d0e03
+IORING_REGISTER_PBUF_RING	/usr/include/liburing/io_uring.h	/^	IORING_REGISTER_PBUF_RING		= 22,$/;"	e	enum:__anonb6972f0d0e03
+IORING_REGISTER_PBUF_STATUS	/usr/include/liburing/io_uring.h	/^	IORING_REGISTER_PBUF_STATUS		= 26,$/;"	e	enum:__anonb6972f0d0e03
+IORING_REGISTER_PERSONALITY	/usr/include/liburing/io_uring.h	/^	IORING_REGISTER_PERSONALITY		= 9,$/;"	e	enum:__anonb6972f0d0e03
+IORING_REGISTER_PROBE	/usr/include/liburing/io_uring.h	/^	IORING_REGISTER_PROBE			= 8,$/;"	e	enum:__anonb6972f0d0e03
+IORING_REGISTER_RESTRICTIONS	/usr/include/liburing/io_uring.h	/^	IORING_REGISTER_RESTRICTIONS		= 11,$/;"	e	enum:__anonb6972f0d0e03
+IORING_REGISTER_RING_FDS	/usr/include/liburing/io_uring.h	/^	IORING_REGISTER_RING_FDS		= 20,$/;"	e	enum:__anonb6972f0d0e03
+IORING_REGISTER_SYNC_CANCEL	/usr/include/liburing/io_uring.h	/^	IORING_REGISTER_SYNC_CANCEL		= 24,$/;"	e	enum:__anonb6972f0d0e03
+IORING_REGISTER_USE_REGISTERED_RING	/usr/include/liburing/io_uring.h	/^	IORING_REGISTER_USE_REGISTERED_RING	= 1U << 31$/;"	e	enum:__anonb6972f0d0e03
+IORING_RESTRICTION_LAST	/usr/include/liburing/io_uring.h	/^	IORING_RESTRICTION_LAST$/;"	e	enum:__anonb6972f0d1403
+IORING_RESTRICTION_REGISTER_OP	/usr/include/liburing/io_uring.h	/^	IORING_RESTRICTION_REGISTER_OP		= 0,$/;"	e	enum:__anonb6972f0d1403
+IORING_RESTRICTION_SQE_FLAGS_ALLOWED	/usr/include/liburing/io_uring.h	/^	IORING_RESTRICTION_SQE_FLAGS_ALLOWED	= 2,$/;"	e	enum:__anonb6972f0d1403
+IORING_RESTRICTION_SQE_FLAGS_REQUIRED	/usr/include/liburing/io_uring.h	/^	IORING_RESTRICTION_SQE_FLAGS_REQUIRED	= 3,$/;"	e	enum:__anonb6972f0d1403
+IORING_RESTRICTION_SQE_OP	/usr/include/liburing/io_uring.h	/^	IORING_RESTRICTION_SQE_OP		= 1,$/;"	e	enum:__anonb6972f0d1403
+IORING_RSRC_REGISTER_SPARSE	/usr/include/liburing/io_uring.h	/^#define IORING_RSRC_REGISTER_SPARSE	/;"	d
+IORING_SEND_ZC_REPORT_USAGE	/usr/include/liburing/io_uring.h	/^#define IORING_SEND_ZC_REPORT_USAGE	/;"	d
+IORING_SETUP_ATTACH_WQ	/usr/include/liburing/io_uring.h	/^#define IORING_SETUP_ATTACH_WQ	/;"	d
+IORING_SETUP_CLAMP	/usr/include/liburing/io_uring.h	/^#define IORING_SETUP_CLAMP	/;"	d
+IORING_SETUP_COOP_TASKRUN	/usr/include/liburing/io_uring.h	/^#define IORING_SETUP_COOP_TASKRUN	/;"	d
+IORING_SETUP_CQE32	/usr/include/liburing/io_uring.h	/^#define IORING_SETUP_CQE32	/;"	d
+IORING_SETUP_CQSIZE	/usr/include/liburing/io_uring.h	/^#define IORING_SETUP_CQSIZE	/;"	d
+IORING_SETUP_DEFER_TASKRUN	/usr/include/liburing/io_uring.h	/^#define IORING_SETUP_DEFER_TASKRUN	/;"	d
+IORING_SETUP_IOPOLL	/usr/include/liburing/io_uring.h	/^#define IORING_SETUP_IOPOLL	/;"	d
+IORING_SETUP_NO_MMAP	/usr/include/liburing/io_uring.h	/^#define IORING_SETUP_NO_MMAP	/;"	d
+IORING_SETUP_NO_SQARRAY	/usr/include/liburing/io_uring.h	/^#define IORING_SETUP_NO_SQARRAY	/;"	d
+IORING_SETUP_REGISTERED_FD_ONLY	/usr/include/liburing/io_uring.h	/^#define IORING_SETUP_REGISTERED_FD_ONLY	/;"	d
+IORING_SETUP_R_DISABLED	/usr/include/liburing/io_uring.h	/^#define IORING_SETUP_R_DISABLED	/;"	d
+IORING_SETUP_SINGLE_ISSUER	/usr/include/liburing/io_uring.h	/^#define IORING_SETUP_SINGLE_ISSUER	/;"	d
+IORING_SETUP_SQE128	/usr/include/liburing/io_uring.h	/^#define IORING_SETUP_SQE128	/;"	d
+IORING_SETUP_SQPOLL	/usr/include/liburing/io_uring.h	/^#define IORING_SETUP_SQPOLL	/;"	d
+IORING_SETUP_SQ_AFF	/usr/include/liburing/io_uring.h	/^#define IORING_SETUP_SQ_AFF	/;"	d
+IORING_SETUP_SUBMIT_ALL	/usr/include/liburing/io_uring.h	/^#define IORING_SETUP_SUBMIT_ALL	/;"	d
+IORING_SETUP_TASKRUN_FLAG	/usr/include/liburing/io_uring.h	/^#define IORING_SETUP_TASKRUN_FLAG	/;"	d
+IORING_SQ_CQ_OVERFLOW	/usr/include/liburing/io_uring.h	/^#define IORING_SQ_CQ_OVERFLOW	/;"	d
+IORING_SQ_NEED_WAKEUP	/usr/include/liburing/io_uring.h	/^#define IORING_SQ_NEED_WAKEUP	/;"	d
+IORING_SQ_TASKRUN	/usr/include/liburing/io_uring.h	/^#define IORING_SQ_TASKRUN	/;"	d
+IORING_TIMEOUT_ABS	/usr/include/liburing/io_uring.h	/^#define IORING_TIMEOUT_ABS	/;"	d
+IORING_TIMEOUT_BOOTTIME	/usr/include/liburing/io_uring.h	/^#define IORING_TIMEOUT_BOOTTIME	/;"	d
+IORING_TIMEOUT_CLOCK_MASK	/usr/include/liburing/io_uring.h	/^#define IORING_TIMEOUT_CLOCK_MASK	/;"	d
+IORING_TIMEOUT_ETIME_SUCCESS	/usr/include/liburing/io_uring.h	/^#define IORING_TIMEOUT_ETIME_SUCCESS	/;"	d
+IORING_TIMEOUT_MULTISHOT	/usr/include/liburing/io_uring.h	/^#define IORING_TIMEOUT_MULTISHOT	/;"	d
+IORING_TIMEOUT_REALTIME	/usr/include/liburing/io_uring.h	/^#define IORING_TIMEOUT_REALTIME	/;"	d
+IORING_TIMEOUT_UPDATE	/usr/include/liburing/io_uring.h	/^#define IORING_TIMEOUT_UPDATE	/;"	d
+IORING_TIMEOUT_UPDATE_MASK	/usr/include/liburing/io_uring.h	/^#define IORING_TIMEOUT_UPDATE_MASK	/;"	d
+IORING_UNREGISTER_BUFFERS	/usr/include/liburing/io_uring.h	/^	IORING_UNREGISTER_BUFFERS		= 1,$/;"	e	enum:__anonb6972f0d0e03
+IORING_UNREGISTER_EVENTFD	/usr/include/liburing/io_uring.h	/^	IORING_UNREGISTER_EVENTFD		= 5,$/;"	e	enum:__anonb6972f0d0e03
+IORING_UNREGISTER_FILES	/usr/include/liburing/io_uring.h	/^	IORING_UNREGISTER_FILES			= 3,$/;"	e	enum:__anonb6972f0d0e03
+IORING_UNREGISTER_IOWQ_AFF	/usr/include/liburing/io_uring.h	/^	IORING_UNREGISTER_IOWQ_AFF		= 18,$/;"	e	enum:__anonb6972f0d0e03
+IORING_UNREGISTER_NAPI	/usr/include/liburing/io_uring.h	/^	IORING_UNREGISTER_NAPI			= 28,$/;"	e	enum:__anonb6972f0d0e03
+IORING_UNREGISTER_PBUF_RING	/usr/include/liburing/io_uring.h	/^	IORING_UNREGISTER_PBUF_RING		= 23,$/;"	e	enum:__anonb6972f0d0e03
+IORING_UNREGISTER_PERSONALITY	/usr/include/liburing/io_uring.h	/^	IORING_UNREGISTER_PERSONALITY		= 10,$/;"	e	enum:__anonb6972f0d0e03
+IORING_UNREGISTER_RING_FDS	/usr/include/liburing/io_uring.h	/^	IORING_UNREGISTER_RING_FDS		= 21,$/;"	e	enum:__anonb6972f0d0e03
+IORING_URING_CMD_FIXED	/usr/include/liburing/io_uring.h	/^#define IORING_URING_CMD_FIXED	/;"	d
+IOSQE_ASYNC	/usr/include/liburing/io_uring.h	/^#define IOSQE_ASYNC		(1U << IOSQE_ASYNC_/;"	d
+IOSQE_ASYNC_BIT	/usr/include/liburing/io_uring.h	/^	IOSQE_ASYNC_BIT,$/;"	e	enum:__anonb6972f0d0b03
+IOSQE_BUFFER_SELECT	/usr/include/liburing/io_uring.h	/^#define IOSQE_BUFFER_SELECT	(1U << IOSQE_BUFFER_SELECT_/;"	d
+IOSQE_BUFFER_SELECT_BIT	/usr/include/liburing/io_uring.h	/^	IOSQE_BUFFER_SELECT_BIT,$/;"	e	enum:__anonb6972f0d0b03
+IOSQE_CQE_SKIP_SUCCESS	/usr/include/liburing/io_uring.h	/^#define IOSQE_CQE_SKIP_SUCCESS	(1U << IOSQE_CQE_SKIP_SUCCESS_/;"	d
+IOSQE_CQE_SKIP_SUCCESS_BIT	/usr/include/liburing/io_uring.h	/^	IOSQE_CQE_SKIP_SUCCESS_BIT,$/;"	e	enum:__anonb6972f0d0b03
+IOSQE_FIXED_FILE	/usr/include/liburing/io_uring.h	/^#define IOSQE_FIXED_FILE	(1U << IOSQE_FIXED_FILE_/;"	d
+IOSQE_FIXED_FILE_BIT	/usr/include/liburing/io_uring.h	/^	IOSQE_FIXED_FILE_BIT,$/;"	e	enum:__anonb6972f0d0b03
+IOSQE_IO_DRAIN	/usr/include/liburing/io_uring.h	/^#define IOSQE_IO_DRAIN		(1U << IOSQE_IO_DRAIN_/;"	d
+IOSQE_IO_DRAIN_BIT	/usr/include/liburing/io_uring.h	/^	IOSQE_IO_DRAIN_BIT,$/;"	e	enum:__anonb6972f0d0b03
+IOSQE_IO_HARDLINK	/usr/include/liburing/io_uring.h	/^#define IOSQE_IO_HARDLINK	(1U << IOSQE_IO_HARDLINK_/;"	d
+IOSQE_IO_HARDLINK_BIT	/usr/include/liburing/io_uring.h	/^	IOSQE_IO_HARDLINK_BIT,$/;"	e	enum:__anonb6972f0d0b03
+IOSQE_IO_LINK	/usr/include/liburing/io_uring.h	/^#define IOSQE_IO_LINK		(1U << IOSQE_IO_LINK_/;"	d
+IOSQE_IO_LINK_BIT	/usr/include/liburing/io_uring.h	/^	IOSQE_IO_LINK_BIT,$/;"	e	enum:__anonb6972f0d0b03
+IOURINGINLINE	/usr/include/liburing.h	/^#define IOURINGINLINE /;"	d
+IOU_PBUF_RING_MMAP	/usr/include/liburing/io_uring.h	/^	IOU_PBUF_RING_MMAP	= 1,$/;"	e	enum:__anonb6972f0d1303
+IO_URING_CHECK_VERSION	/usr/include/liburing.h	/^#define IO_URING_CHECK_VERSION(/;"	d
+IO_URING_OP_SUPPORTED	/usr/include/liburing/io_uring.h	/^#define IO_URING_OP_SUPPORTED	/;"	d
+IO_URING_READ_ONCE	/usr/include/liburing/barrier.h	/^#define IO_URING_READ_ONCE(/;"	d
+IO_URING_READ_ONCE	/usr/include/liburing/barrier.h	/^static inline T IO_URING_READ_ONCE(const T &var)$/;"	f	typeref:typename:T
+IO_URING_VERSION_MAJOR	/usr/include/liburing/io_uring_version.h	/^#define IO_URING_VERSION_MAJOR /;"	d
+IO_URING_VERSION_MINOR	/usr/include/liburing/io_uring_version.h	/^#define IO_URING_VERSION_MINOR /;"	d
+IO_URING_WRITE_ONCE	/usr/include/liburing/barrier.h	/^#define IO_URING_WRITE_ONCE(/;"	d
+IO_URING_WRITE_ONCE	/usr/include/liburing/barrier.h	/^static inline void IO_URING_WRITE_ONCE(T &var, T val)$/;"	f	typeref:typename:void
+IO_WQ_BOUND	/usr/include/liburing/io_uring.h	/^	IO_WQ_BOUND,$/;"	e	enum:__anonb6972f0d0f03
+IO_WQ_UNBOUND	/usr/include/liburing/io_uring.h	/^	IO_WQ_UNBOUND,$/;"	e	enum:__anonb6972f0d0f03
+LIBURING_BARRIER_H	/usr/include/liburing/barrier.h	/^#define LIBURING_BARRIER_H$/;"	d
+LIBURING_COMPAT_H	/usr/include/liburing/compat.h	/^#define LIBURING_COMPAT_H$/;"	d
+LIBURING_HAVE_DATA64	/usr/include/liburing.h	/^#define LIBURING_HAVE_DATA64$/;"	d
+LIBURING_UDATA_TIMEOUT	/usr/include/liburing.h	/^#define LIBURING_UDATA_TIMEOUT	/;"	d
+LIBURING_VERSION_H	/usr/include/liburing/io_uring_version.h	/^#define LIBURING_VERSION_H$/;"	d
+LIB_URING_H	/usr/include/liburing.h	/^#define LIB_URING_H$/;"	d
+LINUX_IO_URING_H	/usr/include/liburing/io_uring.h	/^#define LINUX_IO_URING_H$/;"	d
 PRESENTATION_TIME_CLIENT_PROTOCOL_H	build/protocol/presentation-time-client-protocol.h	/^#define PRESENTATION_TIME_CLIENT_PROTOCOL_H$/;"	d
+SOCKET_URING_OP_GETSOCKOPT	/usr/include/liburing/io_uring.h	/^	SOCKET_URING_OP_GETSOCKOPT,$/;"	e	enum:__anonb6972f0d1503
+SOCKET_URING_OP_SETSOCKOPT	/usr/include/liburing/io_uring.h	/^	SOCKET_URING_OP_SETSOCKOPT,$/;"	e	enum:__anonb6972f0d1503
+SOCKET_URING_OP_SIOCINQ	/usr/include/liburing/io_uring.h	/^	SOCKET_URING_OP_SIOCINQ		= 0,$/;"	e	enum:__anonb6972f0d1503
+SOCKET_URING_OP_SIOCOUTQ	/usr/include/liburing/io_uring.h	/^	SOCKET_URING_OP_SIOCOUTQ,$/;"	e	enum:__anonb6972f0d1503
+SPLICE_F_FD_IN_FIXED	/usr/include/liburing/io_uring.h	/^#define SPLICE_F_FD_IN_FIXED	/;"	d
+UAPI_LINUX_IO_URING_H_SKIP_LINUX_TIME_TYPES_H	/usr/include/liburing/compat.h	/^#define UAPI_LINUX_IO_URING_H_SKIP_LINUX_TIME_TYPES_H /;"	d
 VIEWPORTER_CLIENT_PROTOCOL_H	build/protocol/viewporter-client-protocol.h	/^#define VIEWPORTER_CLIENT_PROTOCOL_H$/;"	d
 WAYLAND_CLIENT_CORE_H	/usr/include/wayland-client-core.h	/^#define WAYLAND_CLIENT_CORE_H$/;"	d
 WAYLAND_CLIENT_PROTOCOL_H	/usr/include/wayland-client-protocol.h	/^#define WAYLAND_CLIENT_PROTOCOL_H$/;"	d
@@ -732,30 +955,91 @@ XDG_WM_BASE_INTERFACE	build/protocol/xdg-shell-client-protocol.h	/^#define XDG_W
 XDG_WM_BASE_PING_SINCE_VERSION	build/protocol/xdg-shell-client-protocol.h	/^#define XDG_WM_BASE_PING_SINCE_VERSION /;"	d
 XDG_WM_BASE_PONG	build/protocol/xdg-shell-client-protocol.h	/^#define XDG_WM_BASE_PONG /;"	d
 XDG_WM_BASE_PONG_SINCE_VERSION	build/protocol/xdg-shell-client-protocol.h	/^#define XDG_WM_BASE_PONG_SINCE_VERSION /;"	d
+__NR_io_uring_enter	/usr/include/liburing.h	/^#define __NR_io_uring_enter	/;"	d
+__NR_io_uring_register	/usr/include/liburing.h	/^#define __NR_io_uring_register	/;"	d
+__NR_io_uring_setup	/usr/include/liburing.h	/^#define __NR_io_uring_setup	/;"	d
+__anonb6972f0d010a	/usr/include/liburing/io_uring.h	/^	union {$/;"	u	struct:io_uring_sqe
+__anonb6972f0d0208	/usr/include/liburing/io_uring.h	/^		struct {$/;"	s	union:io_uring_sqe::__anonb6972f0d010a
+__anonb6972f0d030a	/usr/include/liburing/io_uring.h	/^	union {$/;"	u	struct:io_uring_sqe
+__anonb6972f0d0408	/usr/include/liburing/io_uring.h	/^		struct {$/;"	s	union:io_uring_sqe::__anonb6972f0d030a
+__anonb6972f0d050a	/usr/include/liburing/io_uring.h	/^	union {$/;"	u	struct:io_uring_sqe
+__anonb6972f0d060a	/usr/include/liburing/io_uring.h	/^	union {$/;"	u	struct:io_uring_sqe
+__anonb6972f0d070a	/usr/include/liburing/io_uring.h	/^	union {$/;"	u	struct:io_uring_sqe
+__anonb6972f0d0808	/usr/include/liburing/io_uring.h	/^		struct {$/;"	s	union:io_uring_sqe::__anonb6972f0d070a
+__anonb6972f0d090a	/usr/include/liburing/io_uring.h	/^	union {$/;"	u	struct:io_uring_sqe
+__anonb6972f0d0a08	/usr/include/liburing/io_uring.h	/^		struct {$/;"	s	union:io_uring_sqe::__anonb6972f0d090a
+__anonb6972f0d0b03	/usr/include/liburing/io_uring.h	/^enum {$/;"	g
+__anonb6972f0d0c03	/usr/include/liburing/io_uring.h	/^enum {$/;"	g
+__anonb6972f0d0d03	/usr/include/liburing/io_uring.h	/^enum {$/;"	g
+__anonb6972f0d0e03	/usr/include/liburing/io_uring.h	/^enum {$/;"	g
+__anonb6972f0d0f03	/usr/include/liburing/io_uring.h	/^enum {$/;"	g
+__anonb6972f0d100a	/usr/include/liburing/io_uring.h	/^	union {$/;"	u	struct:io_uring_restriction
+__anonb6972f0d110a	/usr/include/liburing/io_uring.h	/^	union {$/;"	u	struct:io_uring_buf_ring
+__anonb6972f0d1208	/usr/include/liburing/io_uring.h	/^		struct {$/;"	s	union:io_uring_buf_ring::__anonb6972f0d110a
+__anonb6972f0d1303	/usr/include/liburing/io_uring.h	/^enum {$/;"	g
+__anonb6972f0d1403	/usr/include/liburing/io_uring.h	/^enum {$/;"	g
+__anonb6972f0d1503	/usr/include/liburing/io_uring.h	/^enum {$/;"	g
 __has_attribute	build/protocol/content-type-v1-protocol.c	/^# define __has_attribute(/;"	d	file:	signature:(x)
 __has_attribute	build/protocol/presentation-time-protocol.c	/^# define __has_attribute(/;"	d	file:	signature:(x)
 __has_attribute	build/protocol/viewporter-protocol.c	/^# define __has_attribute(/;"	d	file:	signature:(x)
 __has_attribute	build/protocol/xdg-shell-protocol.c	/^# define __has_attribute(/;"	d	file:	signature:(x)
+__io_uring_buf_ring_cq_advance	/usr/include/liburing.h	/^IOURINGINLINE void __io_uring_buf_ring_cq_advance(struct io_uring *ring,$/;"	f	typeref:typename:IOURINGINLINE void
+__io_uring_peek_cqe	/usr/include/liburing.h	/^IOURINGINLINE int __io_uring_peek_cqe(struct io_uring *ring,$/;"	f	typeref:typename:IOURINGINLINE int
+__io_uring_prep_poll_mask	/usr/include/liburing.h	/^IOURINGINLINE unsigned __io_uring_prep_poll_mask(unsigned poll_mask)$/;"	f	typeref:typename:IOURINGINLINE unsigned
+__io_uring_set_target_fixed_file	/usr/include/liburing.h	/^IOURINGINLINE void __io_uring_set_target_fixed_file(struct io_uring_sqe *sqe,$/;"	f	typeref:typename:IOURINGINLINE void
+__pad1	/usr/include/liburing/io_uring.h	/^			__u32	__pad1;$/;"	m	struct:io_uring_sqe::__anonb6972f0d010a::__anonb6972f0d0208	typeref:typename:__u32
+__pad2	/usr/include/liburing/io_uring.h	/^			__u64	__pad2[1];$/;"	m	struct:io_uring_sqe::__anonb6972f0d090a::__anonb6972f0d0a08	typeref:typename:__u64[1]
+__pad3	/usr/include/liburing/io_uring.h	/^			__u16	__pad3[1];$/;"	m	struct:io_uring_sqe::__anonb6972f0d070a::__anonb6972f0d0808	typeref:typename:__u16[1]
+_io_uring_get_sqe	/usr/include/liburing.h	/^IOURINGINLINE struct io_uring_sqe *_io_uring_get_sqe(struct io_uring *ring)$/;"	f	typeref:typename:IOURINGINLINE struct io_uring_sqe *
+accept_flags	/usr/include/liburing/io_uring.h	/^		__u32		accept_flags;$/;"	m	union:io_uring_sqe::__anonb6972f0d050a	typeref:typename:__u32
 action	/usr/include/wayland-client-protocol.h	/^	void (*action)(void *data,$/;"	m	struct:wl_data_offer_listener	typeref:typename:void (*)(void * data,struct wl_data_offer * wl_data_offer,uint32_t dnd_action)	access:public
 action	/usr/include/wayland-client-protocol.h	/^	void (*action)(void *data,$/;"	m	struct:wl_data_source_listener	typeref:typename:void (*)(void * data,struct wl_data_source * wl_data_source,uint32_t dnd_action)	access:public
+addr	/usr/include/liburing/io_uring.h	/^		__u64	addr;	\/* pointer to buffer or iovecs *\/$/;"	m	union:io_uring_sqe::__anonb6972f0d030a	typeref:typename:__u64
+addr	/usr/include/liburing/io_uring.h	/^	__u64				addr;$/;"	m	struct:io_uring_sync_cancel_reg	typeref:typename:__u64
+addr	/usr/include/liburing/io_uring.h	/^	__u64	addr;$/;"	m	struct:io_uring_buf	typeref:typename:__u64
+addr2	/usr/include/liburing/io_uring.h	/^		__u64	addr2;$/;"	m	union:io_uring_sqe::__anonb6972f0d010a	typeref:typename:__u64
+addr3	/usr/include/liburing/io_uring.h	/^			__u64	addr3;$/;"	m	struct:io_uring_sqe::__anonb6972f0d090a::__anonb6972f0d0a08	typeref:typename:__u64
+addr_len	/usr/include/liburing/io_uring.h	/^			__u16	addr_len;$/;"	m	struct:io_uring_sqe::__anonb6972f0d070a::__anonb6972f0d0808	typeref:typename:__u16
+array	/usr/include/liburing.h	/^	unsigned *array;$/;"	m	struct:io_uring_sq	typeref:typename:unsigned *
+array	/usr/include/liburing/io_uring.h	/^	__u32 array;$/;"	m	struct:io_sqring_offsets	typeref:typename:__u32
 axis	/usr/include/wayland-client-protocol.h	/^	void (*axis)(void *data,$/;"	m	struct:wl_pointer_listener	typeref:typename:void (*)(void * data,struct wl_pointer * wl_pointer,uint32_t time,uint32_t axis,wl_fixed_t value)	access:public
 axis_discrete	/usr/include/wayland-client-protocol.h	/^	void (*axis_discrete)(void *data,$/;"	m	struct:wl_pointer_listener	typeref:typename:void (*)(void * data,struct wl_pointer * wl_pointer,uint32_t axis,int32_t discrete)	access:public
 axis_relative_direction	/usr/include/wayland-client-protocol.h	/^	void (*axis_relative_direction)(void *data,$/;"	m	struct:wl_pointer_listener	typeref:typename:void (*)(void * data,struct wl_pointer * wl_pointer,uint32_t axis,uint32_t direction)	access:public
 axis_source	/usr/include/wayland-client-protocol.h	/^	void (*axis_source)(void *data,$/;"	m	struct:wl_pointer_listener	typeref:typename:void (*)(void * data,struct wl_pointer * wl_pointer,uint32_t axis_source)	access:public
 axis_stop	/usr/include/wayland-client-protocol.h	/^	void (*axis_stop)(void *data,$/;"	m	struct:wl_pointer_listener	typeref:typename:void (*)(void * data,struct wl_pointer * wl_pointer,uint32_t time,uint32_t axis)	access:public
 axis_value120	/usr/include/wayland-client-protocol.h	/^	void (*axis_value120)(void *data,$/;"	m	struct:wl_pointer_listener	typeref:typename:void (*)(void * data,struct wl_pointer * wl_pointer,uint32_t axis,int32_t value120)	access:public
+bgid	/usr/include/liburing/io_uring.h	/^	__u16	bgid;$/;"	m	struct:io_uring_buf_reg	typeref:typename:__u16
+bid	/usr/include/liburing/io_uring.h	/^	__u16	bid;$/;"	m	struct:io_uring_buf	typeref:typename:__u16
+big_cqe	/usr/include/liburing/io_uring.h	/^	__u64 big_cqe[];$/;"	m	struct:io_uring_cqe	typeref:typename:__u64[]
+buf_group	/usr/include/liburing/io_uring.h	/^		__u16	buf_group;$/;"	m	union:io_uring_sqe::__anonb6972f0d060a	typeref:typename:__u16
+buf_group	/usr/include/liburing/io_uring.h	/^	__u32	buf_group;	\/* input *\/$/;"	m	struct:io_uring_buf_status	typeref:typename:__u32
+buf_index	/usr/include/liburing/io_uring.h	/^		__u16	buf_index;$/;"	m	union:io_uring_sqe::__anonb6972f0d060a	typeref:typename:__u16
+bufs	/usr/include/liburing/io_uring.h	/^		struct io_uring_buf	bufs[0];$/;"	m	union:io_uring_buf_ring::__anonb6972f0d110a	typeref:struct:io_uring_buf[0]
+busy_poll_to	/usr/include/liburing/io_uring.h	/^	__u32   busy_poll_to;$/;"	m	struct:io_uring_napi	typeref:typename:__u32
 button	/usr/include/wayland-client-protocol.h	/^	void (*button)(void *data,$/;"	m	struct:wl_pointer_listener	typeref:typename:void (*)(void * data,struct wl_pointer * wl_pointer,uint32_t serial,uint32_t time,uint32_t button,uint32_t state)	access:public
 cancel	/usr/include/wayland-client-protocol.h	/^	void (*cancel)(void *data,$/;"	m	struct:wl_touch_listener	typeref:typename:void (*)(void * data,struct wl_touch * wl_touch)	access:public
+cancel_flags	/usr/include/liburing/io_uring.h	/^		__u32		cancel_flags;$/;"	m	union:io_uring_sqe::__anonb6972f0d050a	typeref:typename:__u32
 cancelled	/usr/include/wayland-client-protocol.h	/^	void (*cancelled)(void *data,$/;"	m	struct:wl_data_source_listener	typeref:typename:void (*)(void * data,struct wl_data_source * wl_data_source)	access:public
 capabilities	/usr/include/wayland-client-protocol.h	/^	void (*capabilities)(void *data,$/;"	m	struct:wl_seat_listener	typeref:typename:void (*)(void * data,struct wl_seat * wl_seat,uint32_t capabilities)	access:public
 clock_id	build/protocol/presentation-time-client-protocol.h	/^	void (*clock_id)(void *data,$/;"	m	struct:wp_presentation_listener	typeref:typename:void (*)(void * data,struct wp_presentation * wp_presentation,uint32_t clk_id)	access:public
 close	build/protocol/xdg-shell-client-protocol.h	/^	void (*close)(void *data,$/;"	m	struct:xdg_toplevel_listener	typeref:typename:void (*)(void * data,struct xdg_toplevel * xdg_toplevel)	access:public
+cmd	/usr/include/liburing/io_uring.h	/^		__u8	cmd[0];$/;"	m	union:io_uring_sqe::__anonb6972f0d090a	typeref:typename:__u8[0]
+cmd_op	/usr/include/liburing/io_uring.h	/^			__u32	cmd_op;$/;"	m	struct:io_uring_sqe::__anonb6972f0d010a::__anonb6972f0d0208	typeref:typename:__u32
 configure	/usr/include/wayland-client-protocol.h	/^	void (*configure)(void *data,$/;"	m	struct:wl_shell_surface_listener	typeref:typename:void (*)(void * data,struct wl_shell_surface * wl_shell_surface,uint32_t edges,int32_t width,int32_t height)	access:public
 configure	build/protocol/xdg-shell-client-protocol.h	/^	void (*configure)(void *data,$/;"	m	struct:xdg_popup_listener	typeref:typename:void (*)(void * data,struct xdg_popup * xdg_popup,int32_t x,int32_t y,int32_t width,int32_t height)	access:public
 configure	build/protocol/xdg-shell-client-protocol.h	/^	void (*configure)(void *data,$/;"	m	struct:xdg_surface_listener	typeref:typename:void (*)(void * data,struct xdg_surface * xdg_surface,uint32_t serial)	access:public
 configure	build/protocol/xdg-shell-client-protocol.h	/^	void (*configure)(void *data,$/;"	m	struct:xdg_toplevel_listener	typeref:typename:void (*)(void * data,struct xdg_toplevel * xdg_toplevel,int32_t width,int32_t height,struct wl_array * states)	access:public
 configure_bounds	build/protocol/xdg-shell-client-protocol.h	/^	void (*configure_bounds)(void *data,$/;"	m	struct:xdg_toplevel_listener	typeref:typename:void (*)(void * data,struct xdg_toplevel * xdg_toplevel,int32_t width,int32_t height)	access:public
 content_type_v1_types	build/protocol/content-type-v1-protocol.c	/^static const struct wl_interface *content_type_v1_types[] = {$/;"	v	typeref:typename:const struct wl_interface * []	file:
+controllen	/usr/include/liburing/io_uring.h	/^	__u32 controllen;$/;"	m	struct:io_uring_recvmsg_out	typeref:typename:__u32
+cq	/usr/include/liburing.h	/^	struct io_uring_cq cq;$/;"	m	struct:io_uring	typeref:struct:io_uring_cq
+cq_entries	/usr/include/liburing/io_uring.h	/^	__u32 cq_entries;$/;"	m	struct:io_uring_params	typeref:typename:__u32
+cq_off	/usr/include/liburing/io_uring.h	/^	struct io_cqring_offsets cq_off;$/;"	m	struct:io_uring_params	typeref:struct:io_cqring_offsets
+cqes	/usr/include/liburing.h	/^	struct io_uring_cqe *cqes;$/;"	m	struct:io_uring_cq	typeref:struct:io_uring_cqe *
+cqes	/usr/include/liburing/io_uring.h	/^	__u32 cqes;$/;"	m	struct:io_cqring_offsets	typeref:typename:__u32
+data	/usr/include/liburing/io_uring.h	/^	__aligned_u64 data;$/;"	m	struct:io_uring_rsrc_register	typeref:typename:__aligned_u64
+data	/usr/include/liburing/io_uring.h	/^	__aligned_u64 data;$/;"	m	struct:io_uring_rsrc_update	typeref:typename:__aligned_u64
+data	/usr/include/liburing/io_uring.h	/^	__aligned_u64 data;$/;"	m	struct:io_uring_rsrc_update2	typeref:typename:__aligned_u64
 data_offer	/usr/include/wayland-client-protocol.h	/^	void (*data_offer)(void *data,$/;"	m	struct:wl_data_device_listener	typeref:typename:void (*)(void * data,struct wl_data_device * wl_data_device,struct wl_data_offer * id)	access:public
 delete_id	/usr/include/wayland-client-protocol.h	/^	void (*delete_id)(void *data,$/;"	m	struct:wl_display_listener	typeref:typename:void (*)(void * data,struct wl_display * wl_display,uint32_t id)	access:public
 description	/usr/include/wayland-client-protocol.h	/^	void (*description)(void *data,$/;"	m	struct:wl_output_listener	typeref:typename:void (*)(void * data,struct wl_output * wl_output,const char * description)	access:public
@@ -766,52 +1050,362 @@ done	/usr/include/wayland-client-protocol.h	/^	void (*done)(void *data,$/;"	m	st
 done	/usr/include/wayland-client-protocol.h	/^	void (*done)(void *data,$/;"	m	struct:wl_output_listener	typeref:typename:void (*)(void * data,struct wl_output * wl_output)	access:public
 down	/usr/include/wayland-client-protocol.h	/^	void (*down)(void *data,$/;"	m	struct:wl_touch_listener	typeref:typename:void (*)(void * data,struct wl_touch * wl_touch,uint32_t serial,uint32_t time,struct wl_surface * surface,int32_t id,wl_fixed_t x,wl_fixed_t y)	access:public
 drop	/usr/include/wayland-client-protocol.h	/^	void (*drop)(void *data,$/;"	m	struct:wl_data_device_listener	typeref:typename:void (*)(void * data,struct wl_data_device * wl_data_device)	access:public
+dropped	/usr/include/liburing/io_uring.h	/^	__u32 dropped;$/;"	m	struct:io_sqring_offsets	typeref:typename:__u32
 enter	/usr/include/wayland-client-protocol.h	/^	void (*enter)(void *data,$/;"	m	struct:wl_data_device_listener	typeref:typename:void (*)(void * data,struct wl_data_device * wl_data_device,uint32_t serial,struct wl_surface * surface,wl_fixed_t x,wl_fixed_t y,struct wl_data_offer * id)	access:public
 enter	/usr/include/wayland-client-protocol.h	/^	void (*enter)(void *data,$/;"	m	struct:wl_keyboard_listener	typeref:typename:void (*)(void * data,struct wl_keyboard * wl_keyboard,uint32_t serial,struct wl_surface * surface,struct wl_array * keys)	access:public
 enter	/usr/include/wayland-client-protocol.h	/^	void (*enter)(void *data,$/;"	m	struct:wl_pointer_listener	typeref:typename:void (*)(void * data,struct wl_pointer * wl_pointer,uint32_t serial,struct wl_surface * surface,wl_fixed_t surface_x,wl_fixed_t surface_y)	access:public
 enter	/usr/include/wayland-client-protocol.h	/^	void (*enter)(void *data,$/;"	m	struct:wl_surface_listener	typeref:typename:void (*)(void * data,struct wl_surface * wl_surface,struct wl_output * output)	access:public
+enter_ring_fd	/usr/include/liburing.h	/^	int enter_ring_fd;$/;"	m	struct:io_uring	typeref:typename:int
 error	/usr/include/wayland-client-protocol.h	/^	void (*error)(void *data,$/;"	m	struct:wl_display_listener	typeref:typename:void (*)(void * data,struct wl_display * wl_display,void * object_id,uint32_t code,const char * message)	access:public
+fadvise_advice	/usr/include/liburing/io_uring.h	/^		__u32		fadvise_advice;$/;"	m	union:io_uring_sqe::__anonb6972f0d050a	typeref:typename:__u32
+fd	/usr/include/liburing/io_uring.h	/^	__s32				fd;$/;"	m	struct:io_uring_sync_cancel_reg	typeref:typename:__s32
+fd	/usr/include/liburing/io_uring.h	/^	__s32	fd;		\/* file descriptor to do IO on *\/$/;"	m	struct:io_uring_sqe	typeref:typename:__s32
+fds	/usr/include/liburing/io_uring.h	/^	__aligned_u64 \/* __s32 * *\/ fds;$/;"	m	struct:io_uring_files_update	typeref:typename:__aligned_u64
+features	/usr/include/liburing.h	/^	unsigned features;$/;"	m	struct:io_uring	typeref:typename:unsigned
+features	/usr/include/liburing/io_uring.h	/^	__u32 features;$/;"	m	struct:io_uring_params	typeref:typename:__u32
+file_index	/usr/include/liburing/io_uring.h	/^		__u32	file_index;$/;"	m	union:io_uring_sqe::__anonb6972f0d070a	typeref:typename:__u32
+flags	/usr/include/liburing.h	/^	unsigned flags;$/;"	m	struct:io_uring	typeref:typename:unsigned
+flags	/usr/include/liburing/io_uring.h	/^	__u16	flags;$/;"	m	struct:io_uring_buf_reg	typeref:typename:__u16
+flags	/usr/include/liburing/io_uring.h	/^	__u16 flags;	\/* IO_URING_OP_* flags *\/$/;"	m	struct:io_uring_probe_op	typeref:typename:__u16
+flags	/usr/include/liburing/io_uring.h	/^	__u32				flags;$/;"	m	struct:io_uring_sync_cancel_reg	typeref:typename:__u32
+flags	/usr/include/liburing/io_uring.h	/^	__u32	flags;$/;"	m	struct:io_uring_cqe	typeref:typename:__u32
+flags	/usr/include/liburing/io_uring.h	/^	__u32 flags;$/;"	m	struct:io_cqring_offsets	typeref:typename:__u32
+flags	/usr/include/liburing/io_uring.h	/^	__u32 flags;$/;"	m	struct:io_sqring_offsets	typeref:typename:__u32
+flags	/usr/include/liburing/io_uring.h	/^	__u32 flags;$/;"	m	struct:io_uring_params	typeref:typename:__u32
+flags	/usr/include/liburing/io_uring.h	/^	__u32 flags;$/;"	m	struct:io_uring_recvmsg_out	typeref:typename:__u32
+flags	/usr/include/liburing/io_uring.h	/^	__u32 flags;$/;"	m	struct:io_uring_rsrc_register	typeref:typename:__u32
+flags	/usr/include/liburing/io_uring.h	/^	__u8	flags;		\/* IOSQE_ flags *\/$/;"	m	struct:io_uring_sqe	typeref:typename:__u8
 format	/usr/include/wayland-client-protocol.h	/^	void (*format)(void *data,$/;"	m	struct:wl_shm_listener	typeref:typename:void (*)(void * data,struct wl_shm * wl_shm,uint32_t format)	access:public
 frame	/usr/include/wayland-client-protocol.h	/^	void (*frame)(void *data,$/;"	m	struct:wl_pointer_listener	typeref:typename:void (*)(void * data,struct wl_pointer * wl_pointer)	access:public
 frame	/usr/include/wayland-client-protocol.h	/^	void (*frame)(void *data,$/;"	m	struct:wl_touch_listener	typeref:typename:void (*)(void * data,struct wl_touch * wl_touch)	access:public
+fsync_flags	/usr/include/liburing/io_uring.h	/^		__u32		fsync_flags;$/;"	m	union:io_uring_sqe::__anonb6972f0d050a	typeref:typename:__u32
+futex_flags	/usr/include/liburing/io_uring.h	/^		__u32		futex_flags;$/;"	m	union:io_uring_sqe::__anonb6972f0d050a	typeref:typename:__u32
 geometry	/usr/include/wayland-client-protocol.h	/^	void (*geometry)(void *data,$/;"	m	struct:wl_output_listener	typeref:typename:void (*)(void * data,struct wl_output * wl_output,int32_t x,int32_t y,int32_t physical_width,int32_t physical_height,int32_t subpixel,const char * make,const char * model,int32_t transform)	access:public
 global	/usr/include/wayland-client-protocol.h	/^	void (*global)(void *data,$/;"	m	struct:wl_registry_listener	typeref:typename:void (*)(void * data,struct wl_registry * wl_registry,uint32_t name,const char * interface,uint32_t version)	access:public
 global_remove	/usr/include/wayland-client-protocol.h	/^	void (*global_remove)(void *data,$/;"	m	struct:wl_registry_listener	typeref:typename:void (*)(void * data,struct wl_registry * wl_registry,uint32_t name)	access:public
+hardlink_flags	/usr/include/liburing/io_uring.h	/^		__u32		hardlink_flags;$/;"	m	union:io_uring_sqe::__anonb6972f0d050a	typeref:typename:__u32
+head	/usr/include/liburing/io_uring.h	/^	__u32	head;		\/* output *\/$/;"	m	struct:io_uring_buf_status	typeref:typename:__u32
+head	/usr/include/liburing/io_uring.h	/^	__u32 head;$/;"	m	struct:io_cqring_offsets	typeref:typename:__u32
+head	/usr/include/liburing/io_uring.h	/^	__u32 head;$/;"	m	struct:io_sqring_offsets	typeref:typename:__u32
+install_fd_flags	/usr/include/liburing/io_uring.h	/^		__u32		install_fd_flags;$/;"	m	union:io_uring_sqe::__anonb6972f0d050a	typeref:typename:__u32
+int_flags	/usr/include/liburing.h	/^	__u8 int_flags;$/;"	m	struct:io_uring	typeref:typename:__u8
+io_cqring_offsets	/usr/include/liburing/io_uring.h	/^struct io_cqring_offsets {$/;"	s
+io_sqring_offsets	/usr/include/liburing/io_uring.h	/^struct io_sqring_offsets {$/;"	s
+io_uring	/usr/include/liburing.h	/^struct io_uring {$/;"	s
+io_uring_buf	/usr/include/liburing/io_uring.h	/^struct io_uring_buf {$/;"	s
+io_uring_buf_reg	/usr/include/liburing/io_uring.h	/^struct io_uring_buf_reg {$/;"	s
+io_uring_buf_ring	/usr/include/liburing/io_uring.h	/^struct io_uring_buf_ring {$/;"	s
+io_uring_buf_ring_add	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_buf_ring_add(struct io_uring_buf_ring *br,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_buf_ring_advance	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_buf_ring_advance(struct io_uring_buf_ring *br,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_buf_ring_available	/usr/include/liburing.h	/^IOURINGINLINE int io_uring_buf_ring_available(struct io_uring *ring,$/;"	f	typeref:typename:IOURINGINLINE int
+io_uring_buf_ring_cq_advance	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_buf_ring_cq_advance(struct io_uring *ring,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_buf_ring_init	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_buf_ring_init(struct io_uring_buf_ring *br)$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_buf_ring_mask	/usr/include/liburing.h	/^IOURINGINLINE int io_uring_buf_ring_mask(__u32 ring_entries)$/;"	f	typeref:typename:IOURINGINLINE int
+io_uring_buf_status	/usr/include/liburing/io_uring.h	/^struct io_uring_buf_status {$/;"	s
+io_uring_cq	/usr/include/liburing.h	/^struct io_uring_cq {$/;"	s
+io_uring_cq_advance	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_cq_advance(struct io_uring *ring, unsigned nr)$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_cq_eventfd_enabled	/usr/include/liburing.h	/^IOURINGINLINE bool io_uring_cq_eventfd_enabled(const struct io_uring *ring)$/;"	f	typeref:typename:IOURINGINLINE bool
+io_uring_cq_eventfd_toggle	/usr/include/liburing.h	/^IOURINGINLINE int io_uring_cq_eventfd_toggle(struct io_uring *ring,$/;"	f	typeref:typename:IOURINGINLINE int
+io_uring_cq_has_overflow	/usr/include/liburing.h	/^IOURINGINLINE bool io_uring_cq_has_overflow(const struct io_uring *ring)$/;"	f	typeref:typename:IOURINGINLINE bool
+io_uring_cq_ready	/usr/include/liburing.h	/^IOURINGINLINE unsigned io_uring_cq_ready(const struct io_uring *ring)$/;"	f	typeref:typename:IOURINGINLINE unsigned
+io_uring_cqe	/usr/include/liburing/io_uring.h	/^struct io_uring_cqe {$/;"	s
+io_uring_cqe_get_data	/usr/include/liburing.h	/^IOURINGINLINE void *io_uring_cqe_get_data(const struct io_uring_cqe *cqe)$/;"	f	typeref:typename:IOURINGINLINE void *
+io_uring_cqe_get_data64	/usr/include/liburing.h	/^IOURINGINLINE __u64 io_uring_cqe_get_data64(const struct io_uring_cqe *cqe)$/;"	f	typeref:typename:IOURINGINLINE __u64
+io_uring_cqe_index	/usr/include/liburing.h	/^#define io_uring_cqe_index(/;"	d
+io_uring_cqe_seen	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_cqe_seen(struct io_uring *ring,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_cqe_shift	/usr/include/liburing.h	/^#define io_uring_cqe_shift(/;"	d
+io_uring_file_index_range	/usr/include/liburing/io_uring.h	/^struct io_uring_file_index_range {$/;"	s
+io_uring_files_update	/usr/include/liburing/io_uring.h	/^struct io_uring_files_update {$/;"	s
+io_uring_for_each_cqe	/usr/include/liburing.h	/^#define io_uring_for_each_cqe(/;"	d
+io_uring_get_sqe	/usr/include/liburing.h	/^IOURINGINLINE struct io_uring_sqe *io_uring_get_sqe(struct io_uring *ring)$/;"	f	typeref:typename:IOURINGINLINE struct io_uring_sqe *
+io_uring_getevents_arg	/usr/include/liburing/io_uring.h	/^struct io_uring_getevents_arg {$/;"	s
+io_uring_initialize_sqe	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_initialize_sqe(struct io_uring_sqe *sqe)$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_napi	/usr/include/liburing/io_uring.h	/^struct io_uring_napi {$/;"	s
+io_uring_op	/usr/include/liburing/io_uring.h	/^enum io_uring_op {$/;"	g
+io_uring_opcode_supported	/usr/include/liburing.h	/^IOURINGINLINE int io_uring_opcode_supported(const struct io_uring_probe *p,$/;"	f	typeref:typename:IOURINGINLINE int
+io_uring_params	/usr/include/liburing/io_uring.h	/^struct io_uring_params {$/;"	s
+io_uring_peek_cqe	/usr/include/liburing.h	/^IOURINGINLINE int io_uring_peek_cqe(struct io_uring *ring,$/;"	f	typeref:typename:IOURINGINLINE int
+io_uring_prep_accept	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_accept(struct io_uring_sqe *sqe, int fd,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_accept_direct	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_accept_direct(struct io_uring_sqe *sqe, int fd,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_bind	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_bind(struct io_uring_sqe *sqe, int fd,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_cancel	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_cancel(struct io_uring_sqe *sqe,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_cancel64	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_cancel64(struct io_uring_sqe *sqe,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_cancel_fd	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_cancel_fd(struct io_uring_sqe *sqe, int fd,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_close	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_close(struct io_uring_sqe *sqe, int fd)$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_close_direct	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_close_direct(struct io_uring_sqe *sqe,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_cmd_sock	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_cmd_sock(struct io_uring_sqe *sqe,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_connect	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_connect(struct io_uring_sqe *sqe, int fd,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_epoll_ctl	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_epoll_ctl(struct io_uring_sqe *sqe, int epfd,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_fadvise	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_fadvise(struct io_uring_sqe *sqe, int fd,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_fadvise64	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_fadvise64(struct io_uring_sqe *sqe, int fd,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_fallocate	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_fallocate(struct io_uring_sqe *sqe, int fd,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_fgetxattr	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_fgetxattr(struct io_uring_sqe *sqe,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_files_update	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_files_update(struct io_uring_sqe *sqe,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_fixed_fd_install	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_fixed_fd_install(struct io_uring_sqe *sqe,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_fsetxattr	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_fsetxattr(struct io_uring_sqe *sqe, int fd,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_fsync	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_fsync(struct io_uring_sqe *sqe, int fd,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_ftruncate	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_ftruncate(struct io_uring_sqe *sqe,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_futex_wait	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_futex_wait(struct io_uring_sqe *sqe,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_futex_waitv	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_futex_waitv(struct io_uring_sqe *sqe,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_futex_wake	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_futex_wake(struct io_uring_sqe *sqe,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_getxattr	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_getxattr(struct io_uring_sqe *sqe,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_link	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_link(struct io_uring_sqe *sqe,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_link_timeout	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_link_timeout(struct io_uring_sqe *sqe,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_linkat	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_linkat(struct io_uring_sqe *sqe, int olddfd,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_listen	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_listen(struct io_uring_sqe *sqe, int fd,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_madvise	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_madvise(struct io_uring_sqe *sqe, void *addr,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_madvise64	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_madvise64(struct io_uring_sqe *sqe, void *addr,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_mkdir	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_mkdir(struct io_uring_sqe *sqe,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_mkdirat	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_mkdirat(struct io_uring_sqe *sqe, int dfd,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_msg_ring	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_msg_ring(struct io_uring_sqe *sqe, int fd,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_msg_ring_cqe_flags	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_msg_ring_cqe_flags(struct io_uring_sqe *sqe,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_msg_ring_fd	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_msg_ring_fd(struct io_uring_sqe *sqe, int fd,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_msg_ring_fd_alloc	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_msg_ring_fd_alloc(struct io_uring_sqe *sqe,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_multishot_accept	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_multishot_accept(struct io_uring_sqe *sqe,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_multishot_accept_direct	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_multishot_accept_direct(struct io_uring_sqe *sqe,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_nop	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_nop(struct io_uring_sqe *sqe)$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_openat	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_openat(struct io_uring_sqe *sqe, int dfd,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_openat2	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_openat2(struct io_uring_sqe *sqe, int dfd,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_openat2_direct	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_openat2_direct(struct io_uring_sqe *sqe,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_openat_direct	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_openat_direct(struct io_uring_sqe *sqe,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_poll_add	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_poll_add(struct io_uring_sqe *sqe, int fd,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_poll_multishot	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_poll_multishot(struct io_uring_sqe *sqe,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_poll_remove	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_poll_remove(struct io_uring_sqe *sqe,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_poll_update	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_poll_update(struct io_uring_sqe *sqe,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_provide_buffers	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_provide_buffers(struct io_uring_sqe *sqe,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_read	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_read(struct io_uring_sqe *sqe, int fd,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_read_fixed	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_read_fixed(struct io_uring_sqe *sqe, int fd,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_read_multishot	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_read_multishot(struct io_uring_sqe *sqe,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_readv	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_readv(struct io_uring_sqe *sqe, int fd,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_readv2	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_readv2(struct io_uring_sqe *sqe, int fd,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_recv	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_recv(struct io_uring_sqe *sqe, int sockfd,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_recv_multishot	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_recv_multishot(struct io_uring_sqe *sqe,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_recvmsg	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_recvmsg(struct io_uring_sqe *sqe, int fd,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_recvmsg_multishot	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_recvmsg_multishot(struct io_uring_sqe *sqe,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_remove_buffers	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_remove_buffers(struct io_uring_sqe *sqe,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_rename	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_rename(struct io_uring_sqe *sqe,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_renameat	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_renameat(struct io_uring_sqe *sqe, int olddfd,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_rw	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_rw(int op, struct io_uring_sqe *sqe, int fd,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_send	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_send(struct io_uring_sqe *sqe, int sockfd,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_send_bundle	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_send_bundle(struct io_uring_sqe *sqe,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_send_set_addr	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_send_set_addr(struct io_uring_sqe *sqe,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_send_zc	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_send_zc(struct io_uring_sqe *sqe, int sockfd,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_send_zc_fixed	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_send_zc_fixed(struct io_uring_sqe *sqe,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_sendmsg	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_sendmsg(struct io_uring_sqe *sqe, int fd,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_sendmsg_zc	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_sendmsg_zc(struct io_uring_sqe *sqe, int fd,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_sendto	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_sendto(struct io_uring_sqe *sqe, int sockfd,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_setxattr	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_setxattr(struct io_uring_sqe *sqe,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_shutdown	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_shutdown(struct io_uring_sqe *sqe, int fd,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_socket	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_socket(struct io_uring_sqe *sqe, int domain,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_socket_direct	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_socket_direct(struct io_uring_sqe *sqe,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_socket_direct_alloc	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_socket_direct_alloc(struct io_uring_sqe *sqe,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_splice	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_splice(struct io_uring_sqe *sqe,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_statx	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_statx(struct io_uring_sqe *sqe, int dfd,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_symlink	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_symlink(struct io_uring_sqe *sqe,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_symlinkat	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_symlinkat(struct io_uring_sqe *sqe,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_sync_file_range	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_sync_file_range(struct io_uring_sqe *sqe,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_tee	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_tee(struct io_uring_sqe *sqe,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_timeout	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_timeout(struct io_uring_sqe *sqe,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_timeout_remove	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_timeout_remove(struct io_uring_sqe *sqe,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_timeout_update	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_timeout_update(struct io_uring_sqe *sqe,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_unlink	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_unlink(struct io_uring_sqe *sqe,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_unlinkat	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_unlinkat(struct io_uring_sqe *sqe, int dfd,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_waitid	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_waitid(struct io_uring_sqe *sqe,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_write	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_write(struct io_uring_sqe *sqe, int fd,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_write_fixed	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_write_fixed(struct io_uring_sqe *sqe, int fd,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_writev	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_writev(struct io_uring_sqe *sqe, int fd,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_prep_writev2	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_prep_writev2(struct io_uring_sqe *sqe, int fd,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_probe	/usr/include/liburing/io_uring.h	/^struct io_uring_probe {$/;"	s
+io_uring_probe_op	/usr/include/liburing/io_uring.h	/^struct io_uring_probe_op {$/;"	s
+io_uring_recvmsg_cmsg_firsthdr	/usr/include/liburing.h	/^io_uring_recvmsg_cmsg_firsthdr(struct io_uring_recvmsg_out *o,$/;"	f	typeref:typename:IOURINGINLINE struct cmsghdr *
+io_uring_recvmsg_cmsg_nexthdr	/usr/include/liburing.h	/^io_uring_recvmsg_cmsg_nexthdr(struct io_uring_recvmsg_out *o, struct msghdr *msgh,$/;"	f	typeref:typename:IOURINGINLINE struct cmsghdr *
+io_uring_recvmsg_name	/usr/include/liburing.h	/^IOURINGINLINE void *io_uring_recvmsg_name(struct io_uring_recvmsg_out *o)$/;"	f	typeref:typename:IOURINGINLINE void *
+io_uring_recvmsg_out	/usr/include/liburing/io_uring.h	/^struct io_uring_recvmsg_out {$/;"	s
+io_uring_recvmsg_payload	/usr/include/liburing.h	/^IOURINGINLINE void *io_uring_recvmsg_payload(struct io_uring_recvmsg_out *o,$/;"	f	typeref:typename:IOURINGINLINE void *
+io_uring_recvmsg_payload_length	/usr/include/liburing.h	/^io_uring_recvmsg_payload_length(struct io_uring_recvmsg_out *o,$/;"	f	typeref:typename:IOURINGINLINE unsigned int
+io_uring_recvmsg_validate	/usr/include/liburing.h	/^io_uring_recvmsg_validate(void *buf, int buf_len, struct msghdr *msgh)$/;"	f	typeref:typename:IOURINGINLINE struct io_uring_recvmsg_out *
+io_uring_restriction	/usr/include/liburing/io_uring.h	/^struct io_uring_restriction {$/;"	s
+io_uring_rsrc_register	/usr/include/liburing/io_uring.h	/^struct io_uring_rsrc_register {$/;"	s
+io_uring_rsrc_update	/usr/include/liburing/io_uring.h	/^struct io_uring_rsrc_update {$/;"	s
+io_uring_rsrc_update2	/usr/include/liburing/io_uring.h	/^struct io_uring_rsrc_update2 {$/;"	s
+io_uring_smp_load_acquire	/usr/include/liburing/barrier.h	/^#define io_uring_smp_load_acquire(/;"	d
+io_uring_smp_load_acquire	/usr/include/liburing/barrier.h	/^static inline T io_uring_smp_load_acquire(const T *p)$/;"	f	typeref:typename:T
+io_uring_smp_mb	/usr/include/liburing/barrier.h	/^#define io_uring_smp_mb(/;"	d
+io_uring_smp_mb	/usr/include/liburing/barrier.h	/^static inline void io_uring_smp_mb()$/;"	f	typeref:typename:void
+io_uring_smp_store_release	/usr/include/liburing/barrier.h	/^#define io_uring_smp_store_release(/;"	d
+io_uring_smp_store_release	/usr/include/liburing/barrier.h	/^static inline void io_uring_smp_store_release(T *p, T v)$/;"	f	typeref:typename:void
+io_uring_sq	/usr/include/liburing.h	/^struct io_uring_sq {$/;"	s
+io_uring_sq_ready	/usr/include/liburing.h	/^IOURINGINLINE unsigned io_uring_sq_ready(const struct io_uring *ring)$/;"	f	typeref:typename:IOURINGINLINE unsigned
+io_uring_sq_space_left	/usr/include/liburing.h	/^IOURINGINLINE unsigned io_uring_sq_space_left(const struct io_uring *ring)$/;"	f	typeref:typename:IOURINGINLINE unsigned
+io_uring_sqe	/usr/include/liburing/io_uring.h	/^struct io_uring_sqe {$/;"	s
+io_uring_sqe_set_data	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_sqe_set_data(struct io_uring_sqe *sqe, void *data)$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_sqe_set_data64	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_sqe_set_data64(struct io_uring_sqe *sqe,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_sqe_set_flags	/usr/include/liburing.h	/^IOURINGINLINE void io_uring_sqe_set_flags(struct io_uring_sqe *sqe,$/;"	f	typeref:typename:IOURINGINLINE void
+io_uring_sqring_wait	/usr/include/liburing.h	/^IOURINGINLINE int io_uring_sqring_wait(struct io_uring *ring)$/;"	f	typeref:typename:IOURINGINLINE int
+io_uring_sync_cancel_reg	/usr/include/liburing/io_uring.h	/^struct io_uring_sync_cancel_reg {$/;"	s
+io_uring_wait_cqe	/usr/include/liburing.h	/^IOURINGINLINE int io_uring_wait_cqe(struct io_uring *ring,$/;"	f	typeref:typename:IOURINGINLINE int
+io_uring_wait_cqe_nr	/usr/include/liburing.h	/^IOURINGINLINE int io_uring_wait_cqe_nr(struct io_uring *ring,$/;"	f	typeref:typename:IOURINGINLINE int
+ioprio	/usr/include/liburing/io_uring.h	/^	__u16	ioprio;		\/* ioprio for the request *\/$/;"	m	struct:io_uring_sqe	typeref:typename:__u16
+kdropped	/usr/include/liburing.h	/^	unsigned *kdropped;$/;"	m	struct:io_uring_sq	typeref:typename:unsigned *
 key	/usr/include/wayland-client-protocol.h	/^	void (*key)(void *data,$/;"	m	struct:wl_keyboard_listener	typeref:typename:void (*)(void * data,struct wl_keyboard * wl_keyboard,uint32_t serial,uint32_t time,uint32_t key,uint32_t state)	access:public
 keymap	/usr/include/wayland-client-protocol.h	/^	void (*keymap)(void *data,$/;"	m	struct:wl_keyboard_listener	typeref:typename:void (*)(void * data,struct wl_keyboard * wl_keyboard,uint32_t format,int32_t fd,uint32_t size)	access:public
+kflags	/usr/include/liburing.h	/^	unsigned *kflags;$/;"	m	struct:io_uring_cq	typeref:typename:unsigned *
+kflags	/usr/include/liburing.h	/^	unsigned *kflags;$/;"	m	struct:io_uring_sq	typeref:typename:unsigned *
+khead	/usr/include/liburing.h	/^	unsigned *khead;$/;"	m	struct:io_uring_cq	typeref:typename:unsigned *
+khead	/usr/include/liburing.h	/^	unsigned *khead;$/;"	m	struct:io_uring_sq	typeref:typename:unsigned *
+koverflow	/usr/include/liburing.h	/^	unsigned *koverflow;$/;"	m	struct:io_uring_cq	typeref:typename:unsigned *
+kring_entries	/usr/include/liburing.h	/^	unsigned *kring_entries;$/;"	m	struct:io_uring_cq	typeref:typename:unsigned *
+kring_entries	/usr/include/liburing.h	/^	unsigned *kring_entries;$/;"	m	struct:io_uring_sq	typeref:typename:unsigned *
+kring_mask	/usr/include/liburing.h	/^	unsigned *kring_mask;$/;"	m	struct:io_uring_cq	typeref:typename:unsigned *
+kring_mask	/usr/include/liburing.h	/^	unsigned *kring_mask;$/;"	m	struct:io_uring_sq	typeref:typename:unsigned *
+ktail	/usr/include/liburing.h	/^	unsigned *ktail;$/;"	m	struct:io_uring_cq	typeref:typename:unsigned *
+ktail	/usr/include/liburing.h	/^	unsigned *ktail;$/;"	m	struct:io_uring_sq	typeref:typename:unsigned *
+last_op	/usr/include/liburing/io_uring.h	/^	__u8 last_op;	\/* last opcode supported *\/$/;"	m	struct:io_uring_probe	typeref:typename:__u8
 leave	/usr/include/wayland-client-protocol.h	/^	void (*leave)(void *data,$/;"	m	struct:wl_data_device_listener	typeref:typename:void (*)(void * data,struct wl_data_device * wl_data_device)	access:public
 leave	/usr/include/wayland-client-protocol.h	/^	void (*leave)(void *data,$/;"	m	struct:wl_keyboard_listener	typeref:typename:void (*)(void * data,struct wl_keyboard * wl_keyboard,uint32_t serial,struct wl_surface * surface)	access:public
 leave	/usr/include/wayland-client-protocol.h	/^	void (*leave)(void *data,$/;"	m	struct:wl_pointer_listener	typeref:typename:void (*)(void * data,struct wl_pointer * wl_pointer,uint32_t serial,struct wl_surface * surface)	access:public
 leave	/usr/include/wayland-client-protocol.h	/^	void (*leave)(void *data,$/;"	m	struct:wl_surface_listener	typeref:typename:void (*)(void * data,struct wl_surface * wl_surface,struct wl_output * output)	access:public
+len	/usr/include/liburing/io_uring.h	/^	__u32	len;		\/* buffer size or number of iovecs *\/$/;"	m	struct:io_uring_sqe	typeref:typename:__u32
+len	/usr/include/liburing/io_uring.h	/^	__u32	len;$/;"	m	struct:io_uring_buf	typeref:typename:__u32
+len	/usr/include/liburing/io_uring.h	/^	__u32	len;$/;"	m	struct:io_uring_file_index_range	typeref:typename:__u32
+level	/usr/include/liburing/io_uring.h	/^			__u32	level;$/;"	m	struct:io_uring_sqe::__anonb6972f0d030a::__anonb6972f0d0408	typeref:typename:__u32
 mode	/usr/include/wayland-client-protocol.h	/^	void (*mode)(void *data,$/;"	m	struct:wl_output_listener	typeref:typename:void (*)(void * data,struct wl_output * wl_output,uint32_t flags,int32_t width,int32_t height,int32_t refresh)	access:public
 modifiers	/usr/include/wayland-client-protocol.h	/^	void (*modifiers)(void *data,$/;"	m	struct:wl_keyboard_listener	typeref:typename:void (*)(void * data,struct wl_keyboard * wl_keyboard,uint32_t serial,uint32_t mods_depressed,uint32_t mods_latched,uint32_t mods_locked,uint32_t group)	access:public
 motion	/usr/include/wayland-client-protocol.h	/^	void (*motion)(void *data,$/;"	m	struct:wl_data_device_listener	typeref:typename:void (*)(void * data,struct wl_data_device * wl_data_device,uint32_t time,wl_fixed_t x,wl_fixed_t y)	access:public
 motion	/usr/include/wayland-client-protocol.h	/^	void (*motion)(void *data,$/;"	m	struct:wl_pointer_listener	typeref:typename:void (*)(void * data,struct wl_pointer * wl_pointer,uint32_t time,wl_fixed_t surface_x,wl_fixed_t surface_y)	access:public
 motion	/usr/include/wayland-client-protocol.h	/^	void (*motion)(void *data,$/;"	m	struct:wl_touch_listener	typeref:typename:void (*)(void * data,struct wl_touch * wl_touch,uint32_t time,int32_t id,wl_fixed_t x,wl_fixed_t y)	access:public
+msg_flags	/usr/include/liburing/io_uring.h	/^		__u32		msg_flags;$/;"	m	union:io_uring_sqe::__anonb6972f0d050a	typeref:typename:__u32
+msg_ring_flags	/usr/include/liburing/io_uring.h	/^		__u32		msg_ring_flags;$/;"	m	union:io_uring_sqe::__anonb6972f0d050a	typeref:typename:__u32
 name	/usr/include/wayland-client-protocol.h	/^	void (*name)(void *data,$/;"	m	struct:wl_output_listener	typeref:typename:void (*)(void * data,struct wl_output * wl_output,const char * name)	access:public
 name	/usr/include/wayland-client-protocol.h	/^	void (*name)(void *data,$/;"	m	struct:wl_seat_listener	typeref:typename:void (*)(void * data,struct wl_seat * wl_seat,const char * name)	access:public
+namelen	/usr/include/liburing/io_uring.h	/^	__u32 namelen;$/;"	m	struct:io_uring_recvmsg_out	typeref:typename:__u32
+nop_flags	/usr/include/liburing/io_uring.h	/^		__u32		nop_flags;$/;"	m	union:io_uring_sqe::__anonb6972f0d050a	typeref:typename:__u32
+nr	/usr/include/liburing/io_uring.h	/^	__u32 nr;$/;"	m	struct:io_uring_rsrc_register	typeref:typename:__u32
+nr	/usr/include/liburing/io_uring.h	/^	__u32 nr;$/;"	m	struct:io_uring_rsrc_update2	typeref:typename:__u32
+off	/usr/include/liburing/io_uring.h	/^		__u64	off;	\/* offset into file *\/$/;"	m	union:io_uring_sqe::__anonb6972f0d010a	typeref:typename:__u64
+off	/usr/include/liburing/io_uring.h	/^	__u32	off;$/;"	m	struct:io_uring_file_index_range	typeref:typename:__u32
 offer	/usr/include/wayland-client-protocol.h	/^	void (*offer)(void *data,$/;"	m	struct:wl_data_offer_listener	typeref:typename:void (*)(void * data,struct wl_data_offer * wl_data_offer,const char * mime_type)	access:public
+offset	/usr/include/liburing/io_uring.h	/^	__u32 offset;$/;"	m	struct:io_uring_files_update	typeref:typename:__u32
+offset	/usr/include/liburing/io_uring.h	/^	__u32 offset;$/;"	m	struct:io_uring_rsrc_update	typeref:typename:__u32
+offset	/usr/include/liburing/io_uring.h	/^	__u32 offset;$/;"	m	struct:io_uring_rsrc_update2	typeref:typename:__u32
+op	/usr/include/liburing/io_uring.h	/^	__u8 op;$/;"	m	struct:io_uring_probe_op	typeref:typename:__u8
+opcode	/usr/include/liburing/io_uring.h	/^	__u16 opcode;$/;"	m	struct:io_uring_restriction	typeref:typename:__u16
+opcode	/usr/include/liburing/io_uring.h	/^	__u8	opcode;		\/* type of operation for this sqe *\/$/;"	m	struct:io_uring_sqe	typeref:typename:__u8
+open_flags	/usr/include/liburing/io_uring.h	/^		__u32		open_flags;$/;"	m	union:io_uring_sqe::__anonb6972f0d050a	typeref:typename:__u32
+ops	/usr/include/liburing/io_uring.h	/^	struct io_uring_probe_op ops[];$/;"	m	struct:io_uring_probe	typeref:struct:io_uring_probe_op[]
+ops_len	/usr/include/liburing/io_uring.h	/^	__u8 ops_len;	\/* length of ops[] array below *\/$/;"	m	struct:io_uring_probe	typeref:typename:__u8
+optlen	/usr/include/liburing/io_uring.h	/^		__u32	optlen;$/;"	m	union:io_uring_sqe::__anonb6972f0d070a	typeref:typename:__u32
+optname	/usr/include/liburing/io_uring.h	/^			__u32	optname;$/;"	m	struct:io_uring_sqe::__anonb6972f0d030a::__anonb6972f0d0408	typeref:typename:__u32
+optval	/usr/include/liburing/io_uring.h	/^		__u64	optval;$/;"	m	union:io_uring_sqe::__anonb6972f0d090a	typeref:typename:__u64
 orientation	/usr/include/wayland-client-protocol.h	/^	void (*orientation)(void *data,$/;"	m	struct:wl_touch_listener	typeref:typename:void (*)(void * data,struct wl_touch * wl_touch,int32_t id,wl_fixed_t orientation)	access:public
+overflow	/usr/include/liburing/io_uring.h	/^	__u32 overflow;$/;"	m	struct:io_cqring_offsets	typeref:typename:__u32
+pad	/usr/include/liburing.h	/^	__u8 pad[3];$/;"	m	struct:io_uring	typeref:typename:__u8[3]
+pad	/usr/include/liburing.h	/^	unsigned pad[2];$/;"	m	struct:io_uring_cq	typeref:typename:unsigned[2]
+pad	/usr/include/liburing.h	/^	unsigned pad[2];$/;"	m	struct:io_uring_sq	typeref:typename:unsigned[2]
+pad	/usr/include/liburing/io_uring.h	/^	__u32	pad;$/;"	m	struct:io_uring_getevents_arg	typeref:typename:__u32
+pad	/usr/include/liburing/io_uring.h	/^	__u64				pad[4];$/;"	m	struct:io_uring_sync_cancel_reg	typeref:typename:__u64[4]
+pad	/usr/include/liburing/io_uring.h	/^	__u8    pad[3];$/;"	m	struct:io_uring_napi	typeref:typename:__u8[3]
+pad2	/usr/include/liburing.h	/^	unsigned pad2;$/;"	m	struct:io_uring	typeref:typename:unsigned
+payloadlen	/usr/include/liburing/io_uring.h	/^	__u32 payloadlen;$/;"	m	struct:io_uring_recvmsg_out	typeref:typename:__u32
+personality	/usr/include/liburing/io_uring.h	/^	__u16	personality;$/;"	m	struct:io_uring_sqe	typeref:typename:__u16
 ping	/usr/include/wayland-client-protocol.h	/^	void (*ping)(void *data,$/;"	m	struct:wl_shell_surface_listener	typeref:typename:void (*)(void * data,struct wl_shell_surface * wl_shell_surface,uint32_t serial)	access:public
 ping	build/protocol/xdg-shell-client-protocol.h	/^	void (*ping)(void *data,$/;"	m	struct:xdg_wm_base_listener	typeref:typename:void (*)(void * data,struct xdg_wm_base * xdg_wm_base,uint32_t serial)	access:public
+poll32_events	/usr/include/liburing/io_uring.h	/^		__u32		poll32_events;	\/* word-reversed for BE *\/$/;"	m	union:io_uring_sqe::__anonb6972f0d050a	typeref:typename:__u32
+poll_events	/usr/include/liburing/io_uring.h	/^		__u16		poll_events;	\/* compatibility *\/$/;"	m	union:io_uring_sqe::__anonb6972f0d050a	typeref:typename:__u16
 popup_done	/usr/include/wayland-client-protocol.h	/^	void (*popup_done)(void *data,$/;"	m	struct:wl_shell_surface_listener	typeref:typename:void (*)(void * data,struct wl_shell_surface * wl_shell_surface)	access:public
 popup_done	build/protocol/xdg-shell-client-protocol.h	/^	void (*popup_done)(void *data,$/;"	m	struct:xdg_popup_listener	typeref:typename:void (*)(void * data,struct xdg_popup * xdg_popup)	access:public
+prefer_busy_poll	/usr/include/liburing/io_uring.h	/^	__u8    prefer_busy_poll;$/;"	m	struct:io_uring_napi	typeref:typename:__u8
 preferred_buffer_scale	/usr/include/wayland-client-protocol.h	/^	void (*preferred_buffer_scale)(void *data,$/;"	m	struct:wl_surface_listener	typeref:typename:void (*)(void * data,struct wl_surface * wl_surface,int32_t factor)	access:public
 preferred_buffer_transform	/usr/include/wayland-client-protocol.h	/^	void (*preferred_buffer_transform)(void *data,$/;"	m	struct:wl_surface_listener	typeref:typename:void (*)(void * data,struct wl_surface * wl_surface,uint32_t transform)	access:public
 presentation_time_types	build/protocol/presentation-time-protocol.c	/^static const struct wl_interface *presentation_time_types[] = {$/;"	v	typeref:typename:const struct wl_interface * []	file:
 presented	build/protocol/presentation-time-client-protocol.h	/^	void (*presented)(void *data,$/;"	m	struct:wp_presentation_feedback_listener	typeref:typename:void (*)(void * data,struct wp_presentation_feedback * wp_presentation_feedback,uint32_t tv_sec_hi,uint32_t tv_sec_lo,uint32_t tv_nsec,uint32_t refresh,uint32_t seq_hi,uint32_t seq_lo,uint32_t flags)	access:public
+register_op	/usr/include/liburing/io_uring.h	/^		__u8 register_op; \/* IORING_RESTRICTION_REGISTER_OP *\/$/;"	m	union:io_uring_restriction::__anonb6972f0d100a	typeref:typename:__u8
 release	/usr/include/wayland-client-protocol.h	/^	void (*release)(void *data,$/;"	m	struct:wl_buffer_listener	typeref:typename:void (*)(void * data,struct wl_buffer * wl_buffer)	access:public
+rename_flags	/usr/include/liburing/io_uring.h	/^		__u32		rename_flags;$/;"	m	union:io_uring_sqe::__anonb6972f0d050a	typeref:typename:__u32
 repeat_info	/usr/include/wayland-client-protocol.h	/^	void (*repeat_info)(void *data,$/;"	m	struct:wl_keyboard_listener	typeref:typename:void (*)(void * data,struct wl_keyboard * wl_keyboard,int32_t rate,int32_t delay)	access:public
 repositioned	build/protocol/xdg-shell-client-protocol.h	/^	void (*repositioned)(void *data,$/;"	m	struct:xdg_popup_listener	typeref:typename:void (*)(void * data,struct xdg_popup * xdg_popup,uint32_t token)	access:public
+res	/usr/include/liburing/io_uring.h	/^	__s32	res;		\/* result code for this event *\/$/;"	m	struct:io_uring_cqe	typeref:typename:__s32
+resv	/usr/include/liburing/io_uring.h	/^	__u16	resv;$/;"	m	struct:io_uring_buf	typeref:typename:__u16
+resv	/usr/include/liburing/io_uring.h	/^	__u16 resv;$/;"	m	struct:io_uring_probe	typeref:typename:__u16
+resv	/usr/include/liburing/io_uring.h	/^	__u32	resv[8];$/;"	m	struct:io_uring_buf_status	typeref:typename:__u32[8]
+resv	/usr/include/liburing/io_uring.h	/^	__u32 resv;$/;"	m	struct:io_uring_files_update	typeref:typename:__u32
+resv	/usr/include/liburing/io_uring.h	/^	__u32 resv;$/;"	m	struct:io_uring_rsrc_update	typeref:typename:__u32
+resv	/usr/include/liburing/io_uring.h	/^	__u32 resv;$/;"	m	struct:io_uring_rsrc_update2	typeref:typename:__u32
+resv	/usr/include/liburing/io_uring.h	/^	__u32 resv[3];$/;"	m	struct:io_uring_params	typeref:typename:__u32[3]
+resv	/usr/include/liburing/io_uring.h	/^	__u64	resv;$/;"	m	struct:io_uring_file_index_range	typeref:typename:__u64
+resv	/usr/include/liburing/io_uring.h	/^	__u64	resv[3];$/;"	m	struct:io_uring_buf_reg	typeref:typename:__u64[3]
+resv	/usr/include/liburing/io_uring.h	/^	__u64   resv;$/;"	m	struct:io_uring_napi	typeref:typename:__u64
+resv	/usr/include/liburing/io_uring.h	/^	__u8 resv;$/;"	m	struct:io_uring_probe_op	typeref:typename:__u8
+resv	/usr/include/liburing/io_uring.h	/^	__u8 resv;$/;"	m	struct:io_uring_restriction	typeref:typename:__u8
+resv1	/usr/include/liburing/io_uring.h	/^			__u64	resv1;$/;"	m	struct:io_uring_buf_ring::__anonb6972f0d110a::__anonb6972f0d1208	typeref:typename:__u64
+resv1	/usr/include/liburing/io_uring.h	/^	__u32 resv1;$/;"	m	struct:io_cqring_offsets	typeref:typename:__u32
+resv1	/usr/include/liburing/io_uring.h	/^	__u32 resv1;$/;"	m	struct:io_sqring_offsets	typeref:typename:__u32
+resv2	/usr/include/liburing/io_uring.h	/^			__u32	resv2;$/;"	m	struct:io_uring_buf_ring::__anonb6972f0d110a::__anonb6972f0d1208	typeref:typename:__u32
+resv2	/usr/include/liburing/io_uring.h	/^	__u32 resv2;$/;"	m	struct:io_uring_probe_op	typeref:typename:__u32
+resv2	/usr/include/liburing/io_uring.h	/^	__u32 resv2;$/;"	m	struct:io_uring_rsrc_update2	typeref:typename:__u32
+resv2	/usr/include/liburing/io_uring.h	/^	__u32 resv2[3];$/;"	m	struct:io_uring_probe	typeref:typename:__u32[3]
+resv2	/usr/include/liburing/io_uring.h	/^	__u32 resv2[3];$/;"	m	struct:io_uring_restriction	typeref:typename:__u32[3]
+resv2	/usr/include/liburing/io_uring.h	/^	__u64 resv2;$/;"	m	struct:io_uring_rsrc_register	typeref:typename:__u64
+resv3	/usr/include/liburing/io_uring.h	/^			__u16	resv3;$/;"	m	struct:io_uring_buf_ring::__anonb6972f0d110a::__anonb6972f0d1208	typeref:typename:__u16
+ring_addr	/usr/include/liburing/io_uring.h	/^	__u64	ring_addr;$/;"	m	struct:io_uring_buf_reg	typeref:typename:__u64
+ring_entries	/usr/include/liburing.h	/^	unsigned ring_entries;$/;"	m	struct:io_uring_cq	typeref:typename:unsigned
+ring_entries	/usr/include/liburing.h	/^	unsigned ring_entries;$/;"	m	struct:io_uring_sq	typeref:typename:unsigned
+ring_entries	/usr/include/liburing/io_uring.h	/^	__u32	ring_entries;$/;"	m	struct:io_uring_buf_reg	typeref:typename:__u32
+ring_entries	/usr/include/liburing/io_uring.h	/^	__u32 ring_entries;$/;"	m	struct:io_cqring_offsets	typeref:typename:__u32
+ring_entries	/usr/include/liburing/io_uring.h	/^	__u32 ring_entries;$/;"	m	struct:io_sqring_offsets	typeref:typename:__u32
+ring_fd	/usr/include/liburing.h	/^	int ring_fd;$/;"	m	struct:io_uring	typeref:typename:int
+ring_mask	/usr/include/liburing.h	/^	unsigned ring_mask;$/;"	m	struct:io_uring_cq	typeref:typename:unsigned
+ring_mask	/usr/include/liburing.h	/^	unsigned ring_mask;$/;"	m	struct:io_uring_sq	typeref:typename:unsigned
+ring_mask	/usr/include/liburing/io_uring.h	/^	__u32 ring_mask;$/;"	m	struct:io_cqring_offsets	typeref:typename:__u32
+ring_mask	/usr/include/liburing/io_uring.h	/^	__u32 ring_mask;$/;"	m	struct:io_sqring_offsets	typeref:typename:__u32
+ring_ptr	/usr/include/liburing.h	/^	void *ring_ptr;$/;"	m	struct:io_uring_cq	typeref:typename:void *
+ring_ptr	/usr/include/liburing.h	/^	void *ring_ptr;$/;"	m	struct:io_uring_sq	typeref:typename:void *
+ring_sz	/usr/include/liburing.h	/^	size_t ring_sz;$/;"	m	struct:io_uring_cq	typeref:typename:size_t
+ring_sz	/usr/include/liburing.h	/^	size_t ring_sz;$/;"	m	struct:io_uring_sq	typeref:typename:size_t
+rw_flags	/usr/include/liburing/io_uring.h	/^		__kernel_rwf_t	rw_flags;$/;"	m	union:io_uring_sqe::__anonb6972f0d050a	typeref:typename:__kernel_rwf_t
 scale	/usr/include/wayland-client-protocol.h	/^	void (*scale)(void *data,$/;"	m	struct:wl_output_listener	typeref:typename:void (*)(void * data,struct wl_output * wl_output,int32_t factor)	access:public
 selection	/usr/include/wayland-client-protocol.h	/^	void (*selection)(void *data,$/;"	m	struct:wl_data_device_listener	typeref:typename:void (*)(void * data,struct wl_data_device * wl_data_device,struct wl_data_offer * id)	access:public
 send	/usr/include/wayland-client-protocol.h	/^	void (*send)(void *data,$/;"	m	struct:wl_data_source_listener	typeref:typename:void (*)(void * data,struct wl_data_source * wl_data_source,const char * mime_type,int32_t fd)	access:public
 shape	/usr/include/wayland-client-protocol.h	/^	void (*shape)(void *data,$/;"	m	struct:wl_touch_listener	typeref:typename:void (*)(void * data,struct wl_touch * wl_touch,int32_t id,wl_fixed_t major,wl_fixed_t minor)	access:public
+sigmask	/usr/include/liburing/io_uring.h	/^	__u64	sigmask;$/;"	m	struct:io_uring_getevents_arg	typeref:typename:__u64
+sigmask_sz	/usr/include/liburing/io_uring.h	/^	__u32	sigmask_sz;$/;"	m	struct:io_uring_getevents_arg	typeref:typename:__u32
 source_actions	/usr/include/wayland-client-protocol.h	/^	void (*source_actions)(void *data,$/;"	m	struct:wl_data_offer_listener	typeref:typename:void (*)(void * data,struct wl_data_offer * wl_data_offer,uint32_t source_actions)	access:public
+splice_fd_in	/usr/include/liburing/io_uring.h	/^		__s32	splice_fd_in;$/;"	m	union:io_uring_sqe::__anonb6972f0d070a	typeref:typename:__s32
+splice_flags	/usr/include/liburing/io_uring.h	/^		__u32		splice_flags;$/;"	m	union:io_uring_sqe::__anonb6972f0d050a	typeref:typename:__u32
+splice_off_in	/usr/include/liburing/io_uring.h	/^		__u64	splice_off_in;$/;"	m	union:io_uring_sqe::__anonb6972f0d030a	typeref:typename:__u64
+sq	/usr/include/liburing.h	/^	struct io_uring_sq sq;$/;"	m	struct:io_uring	typeref:struct:io_uring_sq
+sq_entries	/usr/include/liburing/io_uring.h	/^	__u32 sq_entries;$/;"	m	struct:io_uring_params	typeref:typename:__u32
+sq_off	/usr/include/liburing/io_uring.h	/^	struct io_sqring_offsets sq_off;$/;"	m	struct:io_uring_params	typeref:struct:io_sqring_offsets
+sq_thread_cpu	/usr/include/liburing/io_uring.h	/^	__u32 sq_thread_cpu;$/;"	m	struct:io_uring_params	typeref:typename:__u32
+sq_thread_idle	/usr/include/liburing/io_uring.h	/^	__u32 sq_thread_idle;$/;"	m	struct:io_uring_params	typeref:typename:__u32
+sqe_flags	/usr/include/liburing/io_uring.h	/^		__u8 sqe_flags;   \/* IORING_RESTRICTION_SQE_FLAGS_* *\/$/;"	m	union:io_uring_restriction::__anonb6972f0d100a	typeref:typename:__u8
+sqe_head	/usr/include/liburing.h	/^	unsigned sqe_head;$/;"	m	struct:io_uring_sq	typeref:typename:unsigned
+sqe_op	/usr/include/liburing/io_uring.h	/^		__u8 sqe_op;      \/* IORING_RESTRICTION_SQE_OP *\/$/;"	m	union:io_uring_restriction::__anonb6972f0d100a	typeref:typename:__u8
+sqe_tail	/usr/include/liburing.h	/^	unsigned sqe_tail;$/;"	m	struct:io_uring_sq	typeref:typename:unsigned
+sqes	/usr/include/liburing.h	/^	struct io_uring_sqe *sqes;$/;"	m	struct:io_uring_sq	typeref:struct:io_uring_sqe *
+statx_flags	/usr/include/liburing/io_uring.h	/^		__u32		statx_flags;$/;"	m	union:io_uring_sqe::__anonb6972f0d050a	typeref:typename:__u32
 sync_output	build/protocol/presentation-time-client-protocol.h	/^	void (*sync_output)(void *data,$/;"	m	struct:wp_presentation_feedback_listener	typeref:typename:void (*)(void * data,struct wp_presentation_feedback * wp_presentation_feedback,struct wl_output * output)	access:public
+sync_range_flags	/usr/include/liburing/io_uring.h	/^		__u32		sync_range_flags;$/;"	m	union:io_uring_sqe::__anonb6972f0d050a	typeref:typename:__u32
+tags	/usr/include/liburing/io_uring.h	/^	__aligned_u64 tags;$/;"	m	struct:io_uring_rsrc_register	typeref:typename:__aligned_u64
+tags	/usr/include/liburing/io_uring.h	/^	__aligned_u64 tags;$/;"	m	struct:io_uring_rsrc_update2	typeref:typename:__aligned_u64
+tail	/usr/include/liburing/io_uring.h	/^			__u16	tail;$/;"	m	struct:io_uring_buf_ring::__anonb6972f0d110a::__anonb6972f0d1208	typeref:typename:__u16
+tail	/usr/include/liburing/io_uring.h	/^	__u32 tail;$/;"	m	struct:io_cqring_offsets	typeref:typename:__u32
+tail	/usr/include/liburing/io_uring.h	/^	__u32 tail;$/;"	m	struct:io_sqring_offsets	typeref:typename:__u32
 target	/usr/include/wayland-client-protocol.h	/^	void (*target)(void *data,$/;"	m	struct:wl_data_source_listener	typeref:typename:void (*)(void * data,struct wl_data_source * wl_data_source,const char * mime_type)	access:public
+timeout	/usr/include/liburing/io_uring.h	/^	struct __kernel_timespec	timeout;$/;"	m	struct:io_uring_sync_cancel_reg	typeref:struct:__kernel_timespec
+timeout_flags	/usr/include/liburing/io_uring.h	/^		__u32		timeout_flags;$/;"	m	union:io_uring_sqe::__anonb6972f0d050a	typeref:typename:__u32
+ts	/usr/include/liburing/io_uring.h	/^	__u64	ts;$/;"	m	struct:io_uring_getevents_arg	typeref:typename:__u64
+unlink_flags	/usr/include/liburing/io_uring.h	/^		__u32		unlink_flags;$/;"	m	union:io_uring_sqe::__anonb6972f0d050a	typeref:typename:__u32
 up	/usr/include/wayland-client-protocol.h	/^	void (*up)(void *data,$/;"	m	struct:wl_touch_listener	typeref:typename:void (*)(void * data,struct wl_touch * wl_touch,uint32_t serial,uint32_t time,int32_t id)	access:public
+uring_cmd_flags	/usr/include/liburing/io_uring.h	/^		__u32		uring_cmd_flags;$/;"	m	union:io_uring_sqe::__anonb6972f0d050a	typeref:typename:__u32
+uring_likely	/usr/include/liburing.h	/^#define uring_likely(/;"	d
+uring_unlikely	/usr/include/liburing.h	/^#define uring_unlikely(/;"	d
+user_addr	/usr/include/liburing/io_uring.h	/^	__u64 user_addr;$/;"	m	struct:io_cqring_offsets	typeref:typename:__u64
+user_addr	/usr/include/liburing/io_uring.h	/^	__u64 user_addr;$/;"	m	struct:io_sqring_offsets	typeref:typename:__u64
+user_data	/usr/include/liburing/io_uring.h	/^	__u64	user_data;	\/* data to be passed back at completion time *\/$/;"	m	struct:io_uring_sqe	typeref:typename:__u64
+user_data	/usr/include/liburing/io_uring.h	/^	__u64	user_data;	\/* sqe->user_data value passed back *\/$/;"	m	struct:io_uring_cqe	typeref:typename:__u64
 viewporter_types	build/protocol/viewporter-protocol.c	/^static const struct wl_interface *viewporter_types[] = {$/;"	v	typeref:typename:const struct wl_interface * []	file:
+waitid_flags	/usr/include/liburing/io_uring.h	/^		__u32		waitid_flags;$/;"	m	union:io_uring_sqe::__anonb6972f0d050a	typeref:typename:__u32
 wl_buffer_add_listener	/usr/include/wayland-client-protocol.h	/^wl_buffer_add_listener(struct wl_buffer *wl_buffer,$/;"	f	typeref:typename:int	signature:(struct wl_buffer * wl_buffer,const struct wl_buffer_listener * listener,void * data)
 wl_buffer_destroy	/usr/include/wayland-client-protocol.h	/^wl_buffer_destroy(struct wl_buffer *wl_buffer)$/;"	f	typeref:typename:void	signature:(struct wl_buffer * wl_buffer)
 wl_buffer_get_user_data	/usr/include/wayland-client-protocol.h	/^wl_buffer_get_user_data(struct wl_buffer *wl_buffer)$/;"	f	typeref:typename:void *	signature:(struct wl_buffer * wl_buffer)
@@ -1067,6 +1661,8 @@ wp_viewporter_get_viewport	build/protocol/viewporter-client-protocol.h	/^wp_view
 wp_viewporter_interface	build/protocol/viewporter-protocol.c	/^WL_PRIVATE const struct wl_interface wp_viewporter_interface = {$/;"	v	typeref:typename:const struct wl_interface
 wp_viewporter_requests	build/protocol/viewporter-protocol.c	/^static const struct wl_message wp_viewporter_requests[] = {$/;"	v	typeref:typename:const struct wl_message[]	file:
 wp_viewporter_set_user_data	build/protocol/viewporter-client-protocol.h	/^wp_viewporter_set_user_data(struct wp_viewporter *wp_viewporter, void *user_data)$/;"	f	typeref:typename:void	signature:(struct wp_viewporter * wp_viewporter,void * user_data)
+wq_fd	/usr/include/liburing/io_uring.h	/^	__u32 wq_fd;$/;"	m	struct:io_uring_params	typeref:typename:__u32
+xattr_flags	/usr/include/liburing/io_uring.h	/^		__u32		xattr_flags;$/;"	m	union:io_uring_sqe::__anonb6972f0d050a	typeref:typename:__u32
 xdg_popup_add_listener	build/protocol/xdg-shell-client-protocol.h	/^xdg_popup_add_listener(struct xdg_popup *xdg_popup,$/;"	f	typeref:typename:int	signature:(struct xdg_popup * xdg_popup,const struct xdg_popup_listener * listener,void * data)
 xdg_popup_destroy	build/protocol/xdg-shell-client-protocol.h	/^xdg_popup_destroy(struct xdg_popup *xdg_popup)$/;"	f	typeref:typename:void	signature:(struct xdg_popup * xdg_popup)
 xdg_popup_error	build/protocol/xdg-shell-client-protocol.h	/^enum xdg_popup_error {$/;"	g
